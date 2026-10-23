@@ -55,6 +55,8 @@ class WalkingEnv(LeggedRobotEnv):
             device=self._device,
             dtype=torch.float32,
         )
+        # Use the same buffer for the reward input and feet state updates.
+        self.foot_orientation = self.feet_orientation
         self.feet_velocity = torch.zeros(
             (self.num_envs, len(self._robot.foot_links_idx), 3),
             device=self._device,

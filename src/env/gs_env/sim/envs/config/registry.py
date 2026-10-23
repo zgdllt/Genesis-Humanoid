@@ -67,7 +67,7 @@ EnvArgsRegistry["g1_walk"] = WalkingEnvArgs(
         "FeetAirTimePenalty": 100.0,
         "G1FeetSlidePenalty": 2.0,
         "G1FeetHeightPenalty": 100.0,
-        "FeetOrientationPenalty": 30.0,
+        "FootOrientationPenalty": 30.0,
         "FeetContactForceLimitPenalty": 1.0,
     },
     img_resolution=(480, 270),
