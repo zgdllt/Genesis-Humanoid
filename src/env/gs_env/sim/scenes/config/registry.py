@@ -43,7 +43,6 @@ SimArgsRegistry["legged"] = gs.options.SimOptions(
 ToolArgsRegistry: dict[str, gs.options.ToolOptions] = {}
 
 ToolArgsRegistry["default"] = gs.options.ToolOptions(
-    dt=None,
     floor_height=0.0,
 )
 
@@ -55,7 +54,6 @@ ToolArgsRegistry["default"] = gs.options.ToolOptions(
 RigidArgsRegistry: dict[str, gs.options.RigidOptions] = {}
 
 RigidArgsRegistry["default"] = gs.options.RigidOptions(
-    dt=None,
     gravity=None,
     enable_collision=True,
     enable_joint_limit=True,
@@ -70,11 +68,8 @@ RigidArgsRegistry["default"] = gs.options.RigidOptions(
     ls_iterations=50,
     ls_tolerance=1e-2,
     sparse_solve=False,
-    contact_resolve_time=None,
-    use_contact_island=False,
     use_hibernation=False,
     hibernation_thresh_vel=1e-3,
-    hibernation_thresh_acc=1e-2,
     box_box_detection=False,
 )
 
@@ -86,15 +81,12 @@ RigidArgsRegistry["default"] = gs.options.RigidOptions(
 MPMArgsRegistry: dict[str, gs.options.MPMOptions] = {}
 
 MPMArgsRegistry["default"] = gs.options.MPMOptions(
-    dt=None,
     gravity=None,
     particle_size=None,
     grid_density=64,
     enable_CPIC=False,
     lower_bound=(-1.0, -1.0, 0.0),
     upper_bound=(1.0, 1.0, 1.0),
-    use_sparse_grid=False,
-    leaf_block_size=8,
 )
 
 
@@ -105,7 +97,6 @@ MPMArgsRegistry["default"] = gs.options.MPMOptions(
 FEMArgsRegistry: dict[str, gs.options.FEMOptions] = {}
 
 FEMArgsRegistry["default"] = gs.options.FEMOptions(
-    dt=None,
     gravity=None,
     damping=0.0,
     floor_height=0.0,
@@ -119,7 +110,6 @@ FEMArgsRegistry["default"] = gs.options.FEMOptions(
 SFArgsRegistry: dict[str, gs.options.SFOptions] = {}
 
 SFArgsRegistry["default"] = gs.options.SFOptions(
-    dt=None,
     res=128,
     solver_iters=500,
     decay=0.99,
@@ -146,7 +136,7 @@ VisArgsRegistry["default"] = gs.options.VisOptions(
     show_cameras=False,
     shadow=True,
     plane_reflection=False,
-    env_separate_rigid=False,
+    split_envs=False,
     background_color=(0.04, 0.08, 0.12),
     ambient_light=(0.1, 0.1, 0.1),
     visualize_mpm_boundary=False,
@@ -157,7 +147,7 @@ VisArgsRegistry["default"] = gs.options.VisOptions(
     particle_size_scale=1.0,
     contact_force_scale=0.01,
     n_support_neighbors=12,
-    n_rendered_envs=None,
+    rendered_envs_idx=None,
     lights=[
         {"type": "directional", "dir": (-1, -1, -1), "color": (1.0, 1.0, 1.0), "intensity": 5.0},
     ],
@@ -194,7 +184,7 @@ SceneArgsRegistry["flat_scene_default"] = FlatSceneArgs(
         camera_pos=(-0.6, 0.0, 0.7),
         camera_lookat=(0.2, 0.0, 0.1),
         camera_fov=50,
-        max_FPS=50,
+        refresh_rate=50,
     ),
     normal=(0.0, 0.0, 1.0),
 )
@@ -210,6 +200,7 @@ SceneArgsRegistry["flat_scene_legged"] = FlatSceneArgs(
     tool_options=ToolArgsRegistry["default"],
     rigid_options=gs.options.RigidOptions(
         enable_joint_limit=True,
+        batch_links_info=True,
         enable_collision=True,
         gravity=(0, 0, -9.8),
         box_box_detection=True,
@@ -222,7 +213,7 @@ SceneArgsRegistry["flat_scene_legged"] = FlatSceneArgs(
         camera_pos=(-2.0, 0.0, 0.6),
         camera_lookat=(0.0, 0.0, 0.6),
         camera_fov=50,
-        max_FPS=50,
+        refresh_rate=50,
     ),
     normal=(0.0, 0.0, 1.0),
 )
@@ -238,6 +229,7 @@ SceneArgsRegistry["custom_scene_g1_mocap"] = CustomSceneArgs(
     tool_options=ToolArgsRegistry["default"],
     rigid_options=gs.options.RigidOptions(
         enable_joint_limit=True,
+        batch_links_info=True,
         enable_collision=True,
         gravity=(0, 0, -9.8),
         box_box_detection=True,
@@ -251,7 +243,7 @@ SceneArgsRegistry["custom_scene_g1_mocap"] = CustomSceneArgs(
         camera_pos=(-2.0, 0.0, 0.6),
         camera_lookat=(0.0, 0.0, 0.6),
         camera_fov=50,
-        max_FPS=50,
+        refresh_rate=50,
     ),
     normal=(0.0, 0.0, 1.0),
     remove_ground=False,

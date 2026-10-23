@@ -205,9 +205,12 @@ class LeggedRobotBase(BaseGymRobot):
         self._steps_to_randomize_pds = self._args.steps_to_randomize_pds
 
     def post_build_init(self, eval_mode: bool = False) -> None:
-        self._mass = self._robot.get_mass()
+        # Keep the nominal scalar used to normalize forces, before randomization.
+        self._mass = self._robot.get_mass().reshape(-1)[0]
 
         if not eval_mode:
+            self._default_body_mass = self._robot.get_links_mass([self.body_link_idx]).clone()
+            self._default_body_com = self._robot.get_links_COM([self.body_link_idx]).clone()
             self._init_domain_randomization()
 
         if self._dof_armature is not None:
@@ -244,16 +247,21 @@ class LeggedRobotBase(BaseGymRobot):
         min_friction, max_friction = self._args.dr_args.friction_range
         solver: RigidSolver = self._robot.solver
         ratios = (
-            torch.rand(len(envs_idx), 1).repeat(1, solver.n_geoms) * (max_friction - min_friction)
+            torch.rand(len(envs_idx), 1, device=self._device).repeat(1, solver.n_geoms)
+            * (max_friction - min_friction)
             + min_friction
         )
-        solver.set_geoms_friction_ratio(ratios, torch.arange(0, solver.n_geoms), envs_idx)
+        solver.set_geoms_friction_ratio(
+            ratios, torch.arange(0, solver.n_geoms, device=self._device), envs_idx
+        )
         self._friction_ratio[envs_idx, 0] = ratios[:, 0]
         # mass
         min_mass, max_mass = self._args.dr_args.mass_range
-        added_mass = torch.rand(len(envs_idx), 1) * (max_mass - min_mass) + min_mass
-        self._robot.set_mass_shift(
-            added_mass,
+        added_mass = (
+            torch.rand(len(envs_idx), 1, device=self._device) * (max_mass - min_mass) + min_mass
+        )
+        self._robot.set_links_mass(
+            self._default_body_mass[envs_idx] + added_mass,
             [
                 self.body_link_idx,
             ],
@@ -262,9 +270,11 @@ class LeggedRobotBase(BaseGymRobot):
         self._added_mass[envs_idx] = added_mass
         # com displacement
         min_com, max_com = self._args.dr_args.com_displacement_range
-        displacement = (torch.rand(len(envs_idx), 1, 3) - 0.5) * (max_com - min_com) + min_com
-        self._robot.set_COM_shift(
-            displacement,
+        displacement = (torch.rand(len(envs_idx), 1, 3, device=self._device) - 0.5) * (
+            max_com - min_com
+        ) + min_com
+        self._robot.set_links_COM(
+            self._default_body_com[envs_idx] + displacement,
             [
                 self.body_link_idx,
             ],
@@ -275,7 +285,10 @@ class LeggedRobotBase(BaseGymRobot):
     def _randomize_controls(self, envs_idx: torch.Tensor) -> None:
         # kp
         min_kp, max_kp = self._args.dr_args.kp_range
-        ratios = torch.rand(len(envs_idx), self._dof_dim) * (max_kp - min_kp) + min_kp
+        ratios = (
+            torch.rand(len(envs_idx), self._dof_dim, device=self._device) * (max_kp - min_kp)
+            + min_kp
+        )
         self._batched_dof_kp[envs_idx] = ratios * self._dof_kp[None, :]
         self._kp_ratio[envs_idx] = ratios
         # self._robot.set_dofs_kp(
@@ -283,7 +296,10 @@ class LeggedRobotBase(BaseGymRobot):
         # )
         # kd
         min_kd, max_kd = self._args.dr_args.kd_range
-        ratios = torch.rand(len(envs_idx), self._dof_dim) * (max_kd - min_kd) + min_kd
+        ratios = (
+            torch.rand(len(envs_idx), self._dof_dim, device=self._device) * (max_kd - min_kd)
+            + min_kd
+        )
         self._batched_dof_kd[envs_idx] = ratios * self._dof_kd[None, :]
         self._kd_ratio[envs_idx] = ratios
         # self._robot.set_dofs_kv(
@@ -292,23 +308,33 @@ class LeggedRobotBase(BaseGymRobot):
         # motor strength
         min_strength, max_strength = self._args.dr_args.motor_strength_range
         self._motor_strength[envs_idx] = (
-            torch.rand(len(envs_idx), self._dof_dim) * (max_strength - min_strength) + min_strength
+            torch.rand(len(envs_idx), self._dof_dim, device=self._device)
+            * (max_strength - min_strength)
+            + min_strength
         )
         # motor offset
         min_offset, max_offset = self._args.dr_args.motor_offset_range
         self._motor_offset[envs_idx] = (
-            torch.rand(len(envs_idx), self._dof_dim) * (max_offset - min_offset) + min_offset
+            torch.rand(len(envs_idx), self._dof_dim, device=self._device)
+            * (max_offset - min_offset)
+            + min_offset
         )
 
     def _randomize_pds(self) -> None:
         # kp
         min_kp, max_kp = self._args.dr_args.kp_range
-        ratios = torch.rand(self._num_envs, self._dof_dim) * (max_kp - min_kp) + min_kp
+        ratios = (
+            torch.rand(self._num_envs, self._dof_dim, device=self._device) * (max_kp - min_kp)
+            + min_kp
+        )
         self._batched_dof_kp[:] = ratios * self._dof_kp[None, :]
         self._kp_ratio[:] = ratios
         # kd
         min_kd, max_kd = self._args.dr_args.kd_range
-        ratios = torch.rand(self._num_envs, self._dof_dim) * (max_kd - min_kd) + min_kd
+        ratios = (
+            torch.rand(self._num_envs, self._dof_dim, device=self._device) * (max_kd - min_kd)
+            + min_kd
+        )
         self._batched_dof_kd[:] = ratios * self._dof_kd[None, :]
         self._kd_ratio[:] = ratios
 

@@ -36,11 +36,11 @@ class FlatScene(BaseSimScene):
             sf_options=args.sf_options,
             vis_options=args.vis_options,
             viewer_options=args.viewer_options,
-            show_FPS=show_fps,
+            profiling_options=gs.options.ProfilingOptions(show_FPS=show_fps),
             show_viewer=show_viewer,
             # renderer=_renderer,
         )
-        self._gravity = abs(self._scene.gravity[2].item())
+        self._gravity = abs(float(self._scene.options.sim.gravity[2]))
         #
         self._plane = self._scene.add_entity(
             gs.morphs.Plane(normal=args.normal),

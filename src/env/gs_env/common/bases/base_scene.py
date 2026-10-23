@@ -44,7 +44,6 @@ class BaseSimScene(abc.ABC):
             env_spacing=self._env_spacing,
             n_envs_per_row=self._n_envs_per_row,
             center_envs_at_origin=self._center_envs_at_origin,
-            compile_kernels=self._compile_kernels,
         )
 
     def step(self, update_visualizer: bool = True, refresh_visualizer: bool = True) -> None:

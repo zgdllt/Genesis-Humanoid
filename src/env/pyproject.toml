@@ -3,7 +3,7 @@ name = "gs-env"
 version = "0.0.1"
 description = "Simulation and real robot environments"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<3.14"
 dependencies = [
   "fire>=0.7.0",
   "genesis-world ; sys_platform != 'linux' or platform_machine != 'aarch64'",
