@@ -1,0 +1,49 @@
+[38;5;159m[Genesis] [20:37:49] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:37:49] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:37:49] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:37:49] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [20:37:49] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m64[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:37:50] [INFO] Scene [38;5;121m[3m<ba28ffb>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [20:37:50] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_fca2616[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:37:50] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [20:37:50] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_2bf3ce8[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:37:50] [INFO] Building scene [38;5;121m[3m<ba28ffb>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [20:37:52] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [20:37:57] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [20:37:57] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_func_base.py:831: UserWarning: The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad attribute won't be populated during autograd.backward(). If you indeed want the .grad field to be populated for a non-leaf Tensor, use .retain_grad() on the non-leaf Tensor. If you access the non-leaf Tensor by mistake, make sure you access the leaf Tensor instead. See github.com/pytorch/pytorch/pull/30531 for more information. (Triggered internally at /pytorch/build/aten/src/ATen/core/TensorBody.h:492.)
+  if v.requires_grad and v.grad is None:
+{"horizon": 24, "component": "reward", "analytic": 4.520505956676451e-11, "finite_difference": -1.4820012133832744e-09, "relative_error": 0.00015272062729500388, "same_contact_masks": true, "same_active_sets": false, "changed_physics_steps": [[5, 74], [9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]], "analytic_branch_sha256": "4e0691a6006c8a22425dee297fd106cba927b09183ce68a4ea9d98175814d22c", "epsilon": 0.001, "precision": "64", "fixture": "grounded", "fixture_protocol": "128 nominal-PD settling controls; fixed gains within diagnostic", "passed": false}
+{"horizon": 24, "component": "foot_velocity", "analytic": 0.062058332634149345, "finite_difference": 0.06205832213979079, "relative_error": 1.6910474565333994e-07, "same_contact_masks": true, "same_active_sets": true, "changed_physics_steps": [[], []], "analytic_branch_sha256": "bafb534a1fd327a5d315a289a9163b91b2345166b26de482fcee50eb311eabb0", "epsilon": 0.001, "precision": "64", "fixture": "airborne", "fixture_protocol": "128 nominal-PD settling controls; fixed gains within diagnostic", "passed": true}
+{"horizon": 24, "component": "contact_force", "analytic": 0.21851125363529095, "finite_difference": 16.245511914499076, "relative_error": 0.9865494387135766, "same_contact_masks": true, "same_active_sets": false, "changed_physics_steps": [[5, 74], [9, 10, 11, 12, 13, 14, 15, 16, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95]], "analytic_branch_sha256": "4e0691a6006c8a22425dee297fd106cba927b09183ce68a4ea9d98175814d22c", "epsilon": 0.001, "precision": "64", "fixture": "grounded", "fixture_protocol": "128 nominal-PD settling controls; fixed gains within diagnostic", "passed": false}
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_shac_gradients.py", line 202, in <module>
+    validate(options.output, options.horizons, options.epsilon, options.precision)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_shac_gradients.py", line 189, in validate
+    assert all(c["passed"] for c in checks), (
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Full walk gradient gate failed; no formal runs allowed
+
+[38;5;9m[Genesis] [20:38:25] [ERROR] AssertionError: Full walk gradient gate failed; no formal runs allowed[0m
+[38;5;159m[Genesis] [20:38:25] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m

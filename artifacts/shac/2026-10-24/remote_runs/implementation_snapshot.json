@@ -1,0 +1,8 @@
+{
+  "base_commit": "bfaed612c25de20944db8fc9265b34525146286b",
+  "branch": "codex/genesis-shac",
+  "files": 314,
+  "snapshot_sha256": "54c57ead2555733f848ed3276b3fb4d1884a899220729eab322ef0161e806dcc",
+  "source_root": "/home/limh24/workspace/Genesis-Humanoid-shac",
+  "engine_patch_sha256": "c99ea5fb882b6a75a27414a8697e1eb5977b5d4efc910e99a55376815921acb5"
+}

@@ -1,0 +1,6 @@
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_serial_walk_comparison.py", line 83, in <module>
+    run(parser.parse_args())
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_serial_walk_comparison.py", line 53, in run
+    raise RuntimeError(
+RuntimeError: shac failed; see /home/limh24/workspace/Genesis-Humanoid-shac/logs/shac/limh24_cylinder_fix_pair/shac.stdout.log

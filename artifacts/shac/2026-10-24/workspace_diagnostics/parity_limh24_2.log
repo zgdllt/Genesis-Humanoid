@@ -1,0 +1,73 @@
+[38;5;159m[Genesis] [19:54:28] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [19:54:28] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [19:54:28] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [19:54:28] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [19:54:28] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m32[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+[38;5;159m[Genesis] [19:54:28] [INFO] Scene [38;5;121m[3m<e3cd168>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [19:54:28] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_7c2b85b[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [19:54:28] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [19:54:28] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [19:54:29] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [19:54:29] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_3df1d1e[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [19:54:29] [INFO] Building scene [38;5;121m[3m<e3cd168>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [19:54:32] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/ast/ast_transformers/function_def_transformer.py:781: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  return index == 0 and isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str))
+[38;5;159m[Genesis] [19:54:39] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [19:54:39] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+[38;5;159m[Genesis] [19:54:41] [INFO] Scene [38;5;121m[3m<71e37a8>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [19:54:41] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_8156b64[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [19:54:41] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [19:54:41] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;159m[Genesis] [19:54:41] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_3c383d5[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [19:54:41] [INFO] Building scene [38;5;121m[3m<71e37a8>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [19:54:44] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [19:54:50] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [19:54:50] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_walk_equivalence.py", line 155, in <module>
+    validate(options.output)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_walk_equivalence.py", line 62, in validate
+    diff.scene.rigid_solver.__setstate__(compatible)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/base_solver.py", line 118, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1964, in __setstate__
+    super().__setstate__(state)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/base_solver.py", line 118, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/kinematic_solver.py", line 979, in __setstate__
+    super().__setstate__(state)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/base_solver.py", line 418, in __setstate__
+    array_class.fill_data(items, state.arrays)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/array_class.py", line 303, in fill_data
+    for item in check_data(items, values):
+                ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/array_class.py", line 284, in check_data
+    gs.raise_exception(f"'{item.name}' is shaped {shape} here and {value.shape} in the record: another build.")
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 40, in raise_exception
+    raise gs.GenesisException(msg)
+genesis.GenesisException: 'dyn_state.links.pos_bw' is shaped (31, 2, 2, 3) here and (31, 1, 2, 3) in the record: another build.
+
+[38;5;9m[Genesis] [19:55:07] [ERROR] GenesisException: 'dyn_state.links.pos_bw' is shaped (31, 2, 2, 3) here and (31, 1, 2, 3) in the record: another build.[0m
+[38;5;159m[Genesis] [19:55:07] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m

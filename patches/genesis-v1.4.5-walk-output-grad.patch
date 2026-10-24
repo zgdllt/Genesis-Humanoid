@@ -1,0 +1,876 @@
+--- a/genesis/engine/solvers/rigid/abd/accessor.py
++++ b/genesis/engine/solvers/rigid/abd/accessor.py
+@@ -27,6 +27,49 @@
+     GEOM = 0
+     JOINT = 1
+     EQUALITY = 2
++
++
++@qd.kernel(fastcache=True)
++def kernel_get_walk_outputs(
++    velocity: qd.types.ndarray(),
++    angular: qd.types.ndarray(),
++    contact: qd.types.ndarray(),
++    origin_delta: qd.types.ndarray(),
++    dyn_state: array_class.DynState,
++):
++    for i_l, i_b in qd.ndrange(velocity.shape[1], velocity.shape[0]):
++        delta = dyn_state.links.pos[i_l, i_b] - dyn_state.links.root_COM[i_l, i_b]
++        vel = dyn_state.links.cd_vel[i_l, i_b] + dyn_state.links.cd_ang[i_l, i_b].cross(delta)
++        for j in qd.static(range(3)):
++            velocity[i_b, i_l, j] = vel[j]
++            angular[i_b, i_l, j] = dyn_state.links.cd_ang[i_l, i_b][j]
++            contact[i_b, i_l, j] = dyn_state.links.contact_force[i_l, i_b][j]
++            origin_delta[i_b, i_l, j] = delta[j]
++
++
++@qd.kernel(fastcache=True)
++def kernel_seed_walk_output_grads(
++    velocity: qd.types.ndarray(),
++    angular: qd.types.ndarray(),
++    contact: qd.types.ndarray(),
++    origin_delta: qd.types.ndarray(),
++    saved_angular: qd.types.ndarray(),
++    dyn_state: array_class.DynState,
++):
++    for i_l, i_b in qd.ndrange(velocity.shape[1], velocity.shape[0]):
++        gv = gs.qd_vec3(velocity[i_b, i_l, 0], velocity[i_b, i_l, 1], velocity[i_b, i_l, 2])
++        ga = gs.qd_vec3(angular[i_b, i_l, 0], angular[i_b, i_l, 1], angular[i_b, i_l, 2])
++        gf = gs.qd_vec3(contact[i_b, i_l, 0], contact[i_b, i_l, 1], contact[i_b, i_l, 2])
++        # Earlier read nodes can be visited after a later step rewound primal
++        # buffers. Use the exact values captured by this read, not live buffers.
++        delta = gs.qd_vec3(origin_delta[i_b, i_l, 0], origin_delta[i_b, i_l, 1], origin_delta[i_b, i_l, 2])
++        omega = gs.qd_vec3(saved_angular[i_b, i_l, 0], saved_angular[i_b, i_l, 1], saved_angular[i_b, i_l, 2])
++        gr = gv.cross(omega)
++        dyn_state.links.cd_vel.grad[i_l, i_b] += gv
++        dyn_state.links.cd_ang.grad[i_l, i_b] += ga + delta.cross(gv)
++        dyn_state.links.pos.grad[i_l, i_b] += gr
++        dyn_state.links.root_COM.grad[i_l, i_b] -= gr
++        dyn_state.links.contact_force.grad[i_l, i_b] += gf
+ 
+ 
+ @qd.kernel(fastcache=True)
+--- a/genesis/engine/solvers/rigid/collider/collider.py
++++ b/genesis/engine/solvers/rigid/collider/collider.py
+@@ -89,7 +89,7 @@
+         self._use_split_narrowphase = (
+             self.collider_config.has_non_box_plane_convex_convex
+             and gs.backend != gs.cpu
+-            and not self._solver._requires_grad
++            and not self._solver.rigid_config.differentiable_contact
+         )
+ 
+         # The split narrowphase launches one thread per core, its contact0 pass rounding up to whole environments. An
+@@ -171,7 +171,7 @@
+         # The contact patch can hand back the full clipped polygon of a box-box pair, which the reference engine
+         # budgets at 8 contacts (see func_clip_polygon); the convex budget must hold it or the extra witnesses of the
+         # patch are silently dropped. 'enable_contact_patch' is resolved by the GJK constructor.
+-        if self._solver.rigid_config.requires_grad:
++        if self._solver.rigid_config.differentiable_contact:
+             n_contacts_per_convex_pair = 20
+         elif self._solver._options.enable_contact_patch:
+             n_contacts_per_convex_pair = 8
+@@ -316,7 +316,7 @@
+         # spare occupancy: past half the cores in envs, the launch oversubscribes the SMs and the fused kernel wins.
+         self._use_coop_dedup = (
+             gs.backend != gs.cpu
+-            and not self._solver.rigid_config.requires_grad
++            and not self._solver.rigid_config.differentiable_contact
+             and self.collider_config.has_prunable_contacts
+             and (self._solver._options.contact_pruning_tolerance or 0.0) > 0.0
+             and self._solver._B <= 0.5 * self.collider_config.gpu_cores
+@@ -563,7 +563,7 @@
+             # smoothly curved Minkowski boundary on which EPA never converges, and no contact is ever generated -
+             # the bodies silently tunnel. Faceted partners (box, mesh) and the analytical plane branch are unaffected,
+             # and sphere-sphere pairs are reconstructed in closed form (func_differentiable_sphere_contact).
+-            if self._solver._requires_grad:
++            if self._solver.rigid_config.differentiable_contact:
+                 is_smooth_a = (valid_type_a == gs.GEOM_TYPE.SPHERE) | (valid_type_a == gs.GEOM_TYPE.ELLIPSOID)
+                 is_smooth_b = (valid_type_b == gs.GEOM_TYPE.SPHERE) | (valid_type_b == gs.GEOM_TYPE.ELLIPSOID)
+                 is_sphere_sphere = (valid_type_a == gs.GEOM_TYPE.SPHERE) & (valid_type_b == gs.GEOM_TYPE.SPHERE)
+@@ -728,7 +728,7 @@
+         max_contacts = max_candidate_contacts
+         if (
+             self.collider_config.has_prunable_contacts
+-            and not self._solver._requires_grad
++            and not self._solver.rigid_config.differentiable_contact
+             and self._solver._options.contact_pruning_tolerance is not None
+         ):
+             geoms_link_idx = np.array([geom.link.idx for geom in self._solver.geoms], dtype=np.int64)
+@@ -1049,16 +1049,226 @@
+         self.backward_narrowphase()
+ 
+     def backward_narrowphase(self):
+-        func_narrow_phase_diff_convex_vs_convex.grad(
+-            self._solver.dyn_state,
+-            self.collider_state,
+-            self.collider_state.diff_contact_input,
+-            self._solver.dyn_info,
+-            self._solver.rigid_info,
+-            self.collider_info,
+-            self._solver.rigid_config,
+-            self._solver._errno,
+-        )
++        self._backward_plane_cylinder()
++        # Reverse only occupied slots. Candidate storage is over-allocated (G1:
++        # up to 1280 slots per env), and its mostly-empty launch multiplies the
++        # autodiff scratch of the analytic contact reconstruction at 4096 envs.
++        counts = qd_to_numpy(self.collider_state.n_contacts)
++        # CUDA launch-local reverse scratch grows with concurrently live
++        # threads. Environments are independent, so bound that peak with exact
++        # environment chunks while retaining the original contact graph.
++        for env_begin in range(0, len(counts), 64):
++            env_end = min(env_begin + 64, len(counts))
++            n_live_contacts = int(counts[env_begin:env_end].max())
++            if n_live_contacts:
++                func_narrow_phase_diff_convex_vs_convex.grad(
++                    n_live_contacts,
++                    env_begin,
++                    env_end,
++                    self._solver.geoms_init_AABB,
++                    self._solver.dyn_state,
++                    self.collider_state,
++                    self.collider_state.diff_contact_input,
++                    self._solver.dyn_info,
++                    self._solver.rigid_info,
++                    self.collider_info,
++                    self._solver.rigid_config,
++                    self._solver._errno,
++                )
++
++    def _backward_plane_cylinder(self):
++        """Analytic local VJP in Torch, avoiding Quadrants' large launch stack.
++
++        This is the same selected contact geometry as the QD reconstruction;
++        its derivatives are scattered into the existing rigid adjoint fields.
++        No simulation step or finite-difference approximation is introduced.
++        """
++        solver = self._solver
++        counts = qd_to_torch(self.collider_state.n_contacts)
++        limit = int(counts.max())
++        if not limit:
++            return
++        keys = torch.empty((limit*solver._B, 6), device=gs.device, dtype=torch.int32)
++        kernel_pack_plane_cylinder_keys(keys, self.collider_state, solver.dyn_info)
++        keys = keys[keys[:, 0] >= 0]
++        if not len(keys):
++            return
++        # Gather only occupied, seeded contacts. Copying the entire candidate
++        # buffers would stage hundreds of MB at the 4096-env tape peak.
++        for start in range(0, len(keys), 2048):
++            key = keys[start:start+2048]
++            values = torch.empty((len(key), 31), device=gs.device, dtype=gs.tc_float)
++            kernel_pack_plane_cylinder_values(key, values, solver.geoms_init_AABB,
++                solver.dyn_state, self.collider_state, solver.dyn_info)
++            inputs = tuple(values[:, begin:end].detach().requires_grad_(True)
++                           for begin, end in ((0,3), (3,7), (7,10), (10,14), (14,18)))
++            seeds = (values[:, 24:27], values[:, 27:30], values[:, 30])
++            if not bool(torch.isfinite(values).all()):
++                raise FloatingPointError("Nonfinite plane-cylinder geometry input or adjoint seed")
++            with torch.enable_grad():
++                outputs = _plane_cylinder_geometry_torch(*inputs, values[:,18:21], values[:,21],
++                    values[:,22], key[:,5], float(self.collider_info.mc_perturbation[None]),
++                    values[:,23] * max(gs.EPS, float(self.collider_info.mpr.CCD_TOLERANCE[None])), gs.EPS)
++                gradients = torch.autograd.grad(outputs, inputs, grad_outputs=seeds, allow_unused=True)
++            gradients = tuple(torch.zeros_like(value) if grad is None else grad.detach()
++                              for value, grad in zip(inputs, gradients))
++            if not bool(torch.stack([torch.isfinite(grad).all() for grad in gradients]).all()):
++                raise FloatingPointError("Nonfinite plane-cylinder geometry VJP")
++            kernel_scatter_plane_cylinder_grads(key, *gradients, solver.dyn_state, self.collider_state)
++
++
++def _plane_cylinder_geometry_torch(pa, qa, pb, qb, qi, plane_dir, radius, half, ids, angle, noise, eps):
++    """Vectorized equivalent of the selected analytic QD plane-cylinder path."""
++    def dot(a, b):
++        return (a*b).sum(-1, keepdim=True)
++
++    def normalize(a):
++        return a / a.norm(dim=-1, keepdim=True)
++
++    def rotate(v, q):
++        w, xyz = q[:, :1], q[:, 1:]
++        return (v*(w*w-dot(xyz, xyz)) + 2*xyz*dot(xyz, v)
++                + 2*w*torch.linalg.cross(xyz, v)) / dot(q, q)
++
++    def inverse(q):
++        return torch.cat((q[:, :1], -q[:, 1:]), -1)
++
++    def compose(v, u):
++        uw, uv, vw, vv = u[:, :1], u[:, 1:], v[:, :1], v[:, 1:]
++        return normalize(torch.cat((uw*vw-dot(uv, vv), uw*vv+vw*uv+torch.linalg.cross(uv, vv)), -1))
++
++    z_axis = torch.zeros_like(pb)
++    z_axis[:, 2] = 1
++    radius, half = radius[:, None], half[:, None]
++
++    def support(n, p, q):
++        axis = rotate(z_axis, q)
++        projection = dot(n, axis)
++        endpoint = p + half*torch.where(projection < 0, -1., 1.)*axis
++        radial = n - projection*axis
++        squared = dot(radial, radial)
++        radial_offset = radius*radial/squared.clamp_min(1e-18).sqrt()
++        return endpoint + torch.where(squared > 1e-18, radial_offset, 0.)
++
++    def refine(p, n, depth):
++        qv = qb[:, 1:]
++        uv = torch.linalg.cross(qv, z_axis)
++        axis = z_axis + 2*(qb[:, :1]*uv + torch.linalg.cross(qv, uv))
++        axial = dot(p-pb, axis)
++        clamped = torch.minimum(torch.maximum(axial, -half), half)
++        snapped = pb + clamped*axis + (radius-.5*depth)*n
++        return torch.where(dot(n, axis).abs() < .5, snapped, p)
++
++    n = -normalize(rotate(plane_dir, qa))
++    witness0 = support(n, pb, qb)
++    raw0 = dot(n, witness0-pa)
++    p0 = witness0 - .5*raw0*n
++    d0 = raw0.clamp_min(0)
++    p0 = refine(p0, n, d0)
++    # Build the original inertial-frame perturbation basis.
++    local = rotate(n, inverse(qi))
++    x, y, z = local.unbind(-1)
++    raw_y = torch.stack((-x*y, 1-y*y, -z*y), -1)
++    raw_z = torch.stack((-x*z, -y*z, 1-z*z), -1)
++    b = normalize(torch.where((y.abs() < .5)[:, None], raw_y, raw_z))
++    a = torch.linalg.cross(b, local)
++    axis0 = (0.5**.5)*rotate(a+b, qi)
++    axis1 = (0.5**.5)*rotate(b-a, qi)
++    axis = torch.where((ids <= 2)[:, None], axis0, axis1)
++    axis = axis*torch.where(((ids == 2) | (ids == 4))[:, None], -1., 1.)
++    rv = angle*axis
++    squared = dot(rv, rv)
++    theta = squared.clamp_min(eps*eps).sqrt()
++    qr = torch.cat(((.5*theta).cos(), (.5*theta).sin()/theta*rv), -1)
++    qr = qr*(.5*(3-dot(qr, qr)))
++    identity = torch.zeros_like(qr)
++    identity[:, 0] = 1
++    qr = torch.where(squared > eps*eps, qr, identity)
++    inv_qr = inverse(qr)
++    pap = pa - (rotate(p0-pa, qr)-(p0-pa))
++    pbp = pb - (rotate(p0-pb, inv_qr)-(p0-pb))
++    qap, qbp = compose(qa, qr), compose(qb, inv_qr)
++    np = -normalize(rotate(plane_dir, qap))
++    sp = support(np, pbp, qbp)
++    rawp = dot(np, sp-pap)
++    pp = sp - .5*rawp*np
++    dp = rawp.clamp_min(0)
++    witness = rotate(pp+.5*dp*np-p0, qr) + p0
++    depth = dot(n, witness-p0)+.5*d0
++    position = witness-.5*depth*n
++    interpolate = (depth < 0) & (d0-depth > noise[:, None])
++    denominator = torch.where(interpolate, depth-d0, 1.)
++    position = position + torch.where(interpolate, depth/denominator*(p0-position), 0.)
++    depth = depth.clamp_min(0)
++    position = refine(position, n, depth)
++    position = torch.where((ids == 0)[:, None], p0, position)
++    depth = torch.where((ids == 0)[:, None], d0, depth)
++    return position, n, depth.squeeze(-1)
++
++
++@qd.kernel(fastcache=True)
++def kernel_pack_plane_cylinder_keys(
++    keys: qd.types.ndarray(), collider_state: array_class.ColliderState, dyn_info: array_class.DynInfo,
++):
++    for k in range(keys.shape[0]):
++        i_b = k % collider_state.n_contacts.shape[0]
++        i_c = k // collider_state.n_contacts.shape[0]
++        keys[k, 0] = -1
++        if i_c < collider_state.n_contacts[i_b]:
++            ga, gb = collider_state.contact_data.geom_a[i_c, i_b], collider_state.contact_data.geom_b[i_c, i_b]
++            if dyn_info.geoms.type[ga] == gs.GEOM_TYPE.PLANE and dyn_info.geoms.type[gb] == gs.GEOM_TYPE.CYLINDER:
++                gpos = collider_state.contact_data.pos.grad[i_c, i_b]
++                gnormal = collider_state.contact_data.normal.grad[i_c, i_b]
++                gdepth = collider_state.contact_data.penetration.grad[i_c, i_b]
++                if (gpos != 0.0).any() or (gnormal != 0.0).any() or gdepth != 0.0:
++                    keys[k, 0], keys[k, 1] = ga, gb
++                    keys[k, 2], keys[k, 3], keys[k, 4] = dyn_info.geoms.link_idx[gb], i_b, i_c
++                    keys[k, 5] = collider_state.diff_contact_input.plane_detection_id[i_b, i_c]
++
++
++@qd.kernel(fastcache=True)
++def kernel_pack_plane_cylinder_values(
++    keys: qd.types.ndarray(), values: qd.types.ndarray(),
++    geoms_init_AABB: array_class.GeomsInitAABB,
++    dyn_state: array_class.DynState, collider_state: array_class.ColliderState, dyn_info: array_class.DynInfo,
++):
++    for k in range(keys.shape[0]):
++        ga, gb, link, i_b, i_c = keys[k, 0], keys[k, 1], keys[k, 2], keys[k, 3], keys[k, 4]
++        for axis in qd.static(range(3)):
++            values[k, axis] = dyn_state.geoms.pos[ga, i_b][axis]
++            values[k, 7+axis] = dyn_state.geoms.pos[gb, i_b][axis]
++            values[k, 18+axis] = dyn_info.geoms.data[ga][axis]
++            values[k, 24+axis] = collider_state.contact_data.pos.grad[i_c, i_b][axis]
++            values[k, 27+axis] = collider_state.contact_data.normal.grad[i_c, i_b][axis]
++        for axis in qd.static(range(4)):
++            values[k, 3+axis] = dyn_state.geoms.quat[ga, i_b][axis]
++            values[k, 10+axis] = dyn_state.geoms.quat[gb, i_b][axis]
++            values[k, 14+axis] = dyn_state.links.i_quat[link, i_b][axis]
++        values[k, 21] = dyn_info.geoms.data[gb][0]
++        values[k, 22] = 0.5*dyn_info.geoms.data[gb][1]
++        values[k, 23] = 0.5*(geoms_init_AABB[gb, 7] - geoms_init_AABB[gb, 0]).norm()
++        values[k, 30] = collider_state.contact_data.penetration.grad[i_c, i_b]
++
++
++@qd.kernel(fastcache=True)
++def kernel_scatter_plane_cylinder_grads(
++    keys: qd.types.ndarray(),
++    gpa: qd.types.ndarray(), gqa: qd.types.ndarray(), gpb: qd.types.ndarray(),
++    gqb: qd.types.ndarray(), gqi: qd.types.ndarray(),
++    dyn_state: array_class.DynState, collider_state: array_class.ColliderState,
++):
++    for k in range(keys.shape[0]):
++        ga, gb, link, i_b, i_c = keys[k, 0], keys[k, 1], keys[k, 2], keys[k, 3], keys[k, 4]
++        for axis in qd.static(range(3)):
++            qd.atomic_add(dyn_state.geoms.pos.grad[ga, i_b][axis], gpa[k, axis])
++            qd.atomic_add(dyn_state.geoms.pos.grad[gb, i_b][axis], gpb[k, axis])
++        for axis in qd.static(range(4)):
++            qd.atomic_add(dyn_state.geoms.quat.grad[ga, i_b][axis], gqa[k, axis])
++            qd.atomic_add(dyn_state.geoms.quat.grad[gb, i_b][axis], gqb[k, axis])
++            qd.atomic_add(dyn_state.links.i_quat.grad[link, i_b][axis], gqi[k, axis])
++        collider_state.contact_data.pos.grad[i_c, i_b] = gs.qd_vec3(0., 0., 0.)
++        collider_state.contact_data.normal.grad[i_c, i_b] = gs.qd_vec3(0., 0., 0.)
++        collider_state.contact_data.penetration.grad[i_c, i_b] = gs.qd_float(0.)
+ 
+ 
+ @qd.func
+--- a/genesis/engine/solvers/rigid/collider/contact.py
++++ b/genesis/engine/solvers/rigid/collider/contact.py
+@@ -1353,7 +1353,7 @@
+         # === Pruning phase (link-pair support polygon). Gated by static config: only emitted when the
+         # scene has multi-geom links / nonconvex / terrain, and not in autodiff mode. Skipped at runtime
+         # when contact_pruning_tolerance is 0.
+-        if qd.static(collider_static_config.has_prunable_contacts and not rigid_config.requires_grad):
++        if qd.static(collider_static_config.has_prunable_contacts and not rigid_config.differentiable_contact):
+             if n_con - n_hib >= 3 and tol > gs.qd_float(0.0):
+                 # Phase 1: sort contact_sort_idx by canonical (min_link, max_link) pair. The sort_idx already holds
+                 # the identity from the unconditional init above.
+--- a/genesis/engine/solvers/rigid/collider/gjk.py
++++ b/genesis/engine/solvers/rigid/collider/gjk.py
+@@ -49,7 +49,7 @@
+         # 6 * epa_max_iterations is the maximum number of faces in the polytope.
+         polytope_max_faces = 6 * epa_max_iterations
+ 
+-        if rigid_solver.rigid_config.requires_grad:
++        if rigid_solver.rigid_config.differentiable_contact:
+             # For differentiable contact detection, we find multiple contact points for each pair.
+             max_contacts_per_pair = 20
+             max_contact_polygon_verts = 1
+--- a/genesis/engine/solvers/rigid/collider/narrowphase.py
++++ b/genesis/engine/solvers/rigid/collider/narrowphase.py
+@@ -13,7 +13,7 @@
+ import genesis.utils.sdf as sdf
+ import genesis.utils.simt as su
+ 
+-from . import capsule_contact, diff_gjk, gjk, mpr
++from . import capsule_contact, diff_gjk, gjk, mpr, support_field
+ from .box_contact import func_box_box_contact, func_plane_box_contact, func_sphere_box_contact
+ from .constants import CCD_ALGORITHM_CODE, MULTICONTACT_ENTRY, MULTICONTACT_SLOT, PORTAL_STATUS
+ from .contact import (
+@@ -2974,7 +2974,7 @@
+                     # TODO: Add support of smooth refinement to differentiable contact.
+                     if qd.static(collider_static_config.ccd_algorithm != CCD_ALGORITHM_CODE.MJ_MPR):
+                         if prefer_gjk:
+-                            if qd.static(rigid_config.requires_grad):
++                            if qd.static(rigid_config.differentiable_contact):
+                                 diff_gjk.func_gjk_contact(
+                                     i_ga,
+                                     i_gb,
+@@ -3022,11 +3022,12 @@
+                             n_contacts = gjk_state.n_contacts[i_b]
+ 
+                             if is_col:
+-                                if qd.static(rigid_config.requires_grad):
++                                if qd.static(rigid_config.differentiable_contact):
+                                     for i_c in range(n_contacts):
+-                                        func_add_diff_contact_input(
+-                                            i_ga, i_gb, i_b, i_c, collider_state, gjk_state, collider_info
+-                                        )
++                                        if qd.static(rigid_config.requires_grad):
++                                            func_add_diff_contact_input(
++                                                i_ga, i_gb, i_b, i_c, collider_state, gjk_state, collider_info
++                                            )
+                                         func_add_contact(
+                                             i_ga,
+                                             i_gb,
+@@ -3109,7 +3110,7 @@
+                 is_col_0, normal_0, penetration_0, contact_pos_0 = is_col, normal, penetration, contact_pos
+                 is_gjk_used_0 = is_gjk_used
+                 if is_col_0:
+-                    func_add_contact(
++                    added = func_add_contact(
+                         i_ga,
+                         i_gb,
+                         i_b,
+@@ -3125,6 +3126,9 @@
+                         use_atomic=False,
+                         errno=errno,
+                     )
++                    if qd.static(rigid_config.requires_grad):
++                        if added >= 0 and dyn_info.geoms.type[i_ga] == gs.GEOM_TYPE.PLANE:
++                            collider_state.diff_contact_input.plane_detection_id[i_b, added] = 0
+                     if multi_contact:
+                         # Perturb geom_a around two orthogonal axes to find multiple contacts
+                         axis_0, axis_1 = func_contact_orthogonals(
+@@ -3233,7 +3237,7 @@
+                                 is_contact_duplicate = normal.dot(normal_kept) >= normal_cos_tol
+ 
+                 if not is_contact_duplicate:
+-                    func_add_contact(
++                    added = func_add_contact(
+                         i_ga,
+                         i_gb,
+                         i_b,
+@@ -3249,6 +3253,9 @@
+                         use_atomic=False,
+                         errno=errno,
+                     )
++                    if qd.static(rigid_config.requires_grad):
++                        if added >= 0 and dyn_info.geoms.type[i_ga] == gs.GEOM_TYPE.PLANE:
++                            collider_state.diff_contact_input.plane_detection_id[i_b, added] = i_detection
+                     n_con = n_con + 1
+ 
+ 
+@@ -3369,7 +3376,7 @@
+                         is_mpr_updated = True
+ 
+         if qd.static(
+-            collider_static_config.ccd_algorithm != CCD_ALGORITHM_CODE.MJ_MPR and not rigid_config.requires_grad
++            collider_static_config.ccd_algorithm != CCD_ALGORITHM_CODE.MJ_MPR and not rigid_config.differentiable_contact
+         ):
+             if use_gjk:
+                 gjk.func_gjk_contact(
+@@ -4531,8 +4538,78 @@
+                     )
+ 
+ 
++@qd.func
++def func_differentiable_plane_cylinder_contact(
++    i_ga: int,
++    i_gb: int,
++    i_b: int,
++    detection_id: int,
++    geoms_init_AABB: array_class.GeomsInitAABB,
++    dyn_state: array_class.DynState,
++    dyn_info: array_class.DynInfo,
++    rigid_info: array_class.RigidInfo,
++    collider_info: array_class.ColliderInfo,
++    rigid_config: qd.template(),
++):
++    """Rebuild the selected analytic plane-cylinder detection for its VJP.
++
++    The forward still selects/deduplicates its original five detections. Only
++    their discrete IDs are held constant; support sliding, inertial-frame axes,
++    perturbation and depth correction all retain their pose derivatives.
++    """
++    EPS = rigid_info.EPS[None]
++    pa, qa = dyn_state.geoms.pos[i_ga, i_b], dyn_state.geoms.quat[i_ga, i_b]
++    pb, qb = dyn_state.geoms.pos[i_gb, i_b], dyn_state.geoms.quat[i_gb, i_b]
++    normal0, unused_radius = diff_gjk.func_plane_contact_frame(i_b, i_ga, i_gb, dyn_state, dyn_info)
++    witness0 = support_field._func_support_cylinder(i_gb, normal0, pb, qb, dyn_info, shrink=False)
++    raw_depth0 = normal0.dot(witness0 - pa)
++    pos0 = witness0 - 0.5 * raw_depth0 * normal0
++    depth0 = qd.max(raw_depth0, 0.0)
++    pos0 = func_apply_smooth_refinement(
++        i_ga, i_gb, normal0, depth0, pos0, pa, qa, pb, qb, dyn_info, rigid_config
++    )
++    position, depth = pos0, depth0
++    if detection_id > 0:
++        axis0, axis1 = func_contact_orthogonals(
++            i_ga, i_gb, i_b, normal0, geoms_init_AABB, dyn_state, dyn_info, rigid_info, rigid_config
++        )
++        axis = axis0 if detection_id <= 2 else axis1
++        if detection_id == 2 or detection_id == 4:
++            axis = -axis
++        qrot = gu.qd_rotvec_to_quat(collider_info.mc_perturbation[None] * axis, EPS)
++        pap, qap = func_rotate_frame(pa, qa, pos0, qrot)
++        pbp, qbp = func_rotate_frame(pb, qb, pos0, gu.qd_inv_quat(qrot))
++        local_normal = gs.qd_vec3(
++            dyn_info.geoms.data[i_ga][0], dyn_info.geoms.data[i_ga][1], dyn_info.geoms.data[i_ga][2]
++        )
++        normalp = -gu.qd_transform_by_quat(local_normal, qap).normalized()
++        supportp = support_field._func_support_cylinder(i_gb, normalp, pbp, qbp, dyn_info, shrink=False)
++        raw_depthp = normalp.dot(supportp - pap)
++        posp = supportp - 0.5 * raw_depthp * normalp
++        depthp = qd.max(raw_depthp, 0.0)
++        # The plane arm of func_recompute_perturbed_contact. Detection 0
++        # bypasses GJK, so its noise floor is the MPR tolerance term.
++        rotation = gu.qd_quat_to_R(qrot, EPS)
++        witness = rotation @ (posp + 0.5 * depthp * normalp - pos0) + pos0
++        depth = normal0.dot(witness - pos0) + 0.5 * depth0
++        position = witness - 0.5 * depth * normal0
++        scale = func_compute_geom_pair_scale(i_ga, i_gb, geoms_init_AABB, dyn_info)
++        depth_noise = qd.max(EPS * scale, collider_info.mpr.CCD_TOLERANCE[None] * scale)
++        if depth < 0.0 and depth0 - depth > depth_noise:
++            position += depth / (depth - depth0) * (pos0 - position)
++        depth = qd.max(depth, 0.0)
++        position = func_apply_smooth_refinement(
++            i_ga, i_gb, normal0, depth, position, pa, qa, pb, qb, dyn_info, rigid_config
++        )
++    return position, normal0, depth, gs.qd_float(1.0)
++
++
+ @qd.kernel(fastcache=True)
+ def func_narrow_phase_diff_convex_vs_convex(
++    n_live_contacts: int,
++    env_begin: int,
++    env_end: int,
++    geoms_init_AABB: array_class.GeomsInitAABB,
+     dyn_state: array_class.DynState,
+     collider_state: array_class.ColliderState,
+     diff_contact_input: array_class.DiffContactInput,
+@@ -4544,14 +4621,15 @@
+ ):
+     # Compute reference contacts
+     qd.loop_config(serialize=rigid_config.para_level < gs.PARA_LEVEL.PARTIAL)
+-    for i_c, i_b in qd.ndrange(collider_state.contact_data.pos.shape[0], collider_state.active_buffer.shape[1]):
++    for i_c, i_b in qd.ndrange(n_live_contacts, (env_begin, env_end)):
+         if i_c < collider_state.n_contacts[i_b]:
+             ref_id = collider_state.diff_contact_input.ref_id[i_b, i_c]
+             is_ref = i_c == ref_id
+             i_ga = collider_state.diff_contact_input.geom_a[i_b, i_c]
+             i_gb = collider_state.diff_contact_input.geom_b[i_b, i_c]
+ 
+-            if is_ref:
++            if is_ref and not (dyn_info.geoms.type[i_ga] == gs.GEOM_TYPE.PLANE
++                               and dyn_info.geoms.type[i_gb] == gs.GEOM_TYPE.CYLINDER):
+                 ref_penetration = -1.0
+                 contact_pos = gs.qd_vec3(0.0, 0.0, 0.0)
+                 contact_normal = gs.qd_vec3(0.0, 0.0, 0.0)
+@@ -4593,7 +4671,7 @@
+ 
+     # Compute other contacts
+     qd.loop_config(serialize=rigid_config.para_level < gs.PARA_LEVEL.PARTIAL)
+-    for i_c, i_b in qd.ndrange(collider_state.contact_data.pos.shape[0], collider_state.active_buffer.shape[1]):
++    for i_c, i_b in qd.ndrange(n_live_contacts, (env_begin, env_end)):
+         if i_c < collider_state.n_contacts[i_b]:
+             ref_id = collider_state.diff_contact_input.ref_id[i_b, i_c]
+             is_ref = i_c == ref_id
+--- a/genesis/engine/solvers/rigid/collider/support_field.py
++++ b/genesis/engine/solvers/rigid/collider/support_field.py
+@@ -385,8 +385,9 @@
+     res = pos + halflength * endpoint_side * axis
+     if not shrink:
+         d_radial = d - d.dot(axis) * axis
+-        d_radial_norm = d_radial.norm()
+-        if d_radial_norm > 1e-9:
++        d_radial_norm_sq = d_radial.dot(d_radial)
++        if d_radial_norm_sq > 1e-18:
++            d_radial_norm = qd.sqrt(d_radial_norm_sq)
+             res = res + (radius / d_radial_norm) * d_radial
+     return res
+ 
+--- a/genesis/engine/solvers/rigid/constraint/backward.py
++++ b/genesis/engine/solvers/rigid/constraint/backward.py
+@@ -5,6 +5,86 @@
+ import genesis.utils.geom as gu
+ 
+ from . import solver
++
++
++@qd.kernel(fastcache=True)
++def kernel_contact_output_vjp(
++    dyn_state: array_class.DynState,
++    collider_state: array_class.ColliderState,
++    constraint_state: array_class.ConstraintState,
++    rigid_config: qd.template(),
++    stage: qd.template(),
++):
++    """Reverse the exposed net-link contact force on a fixed active set.
++
++    Stage 0 modifies the adjoint RHS; stage 1 adds direct row derivatives after
++    kernel_compute_gradients clears its buffers; stage 2 adds direct basis
++    derivatives after the row-assembly reverse and consumes the output seed.
++    Only four-row pyramidal contacts without hibernation/noslip are supported.
++    """
++    for i_b in range(dyn_state.dofs.ctrl_mode.shape[1]):
++        start = constraint_state.n_constraints_equality[i_b] + constraint_state.n_constraints_frictionloss[i_b]
++        for logical in range(collider_state.n_contacts[i_b]):
++            col = collider_state.contact_sort_idx[logical, i_b]
++            la = collider_state.contact_data.link_a[col, i_b]
++            lb = collider_state.contact_data.link_b[col, i_b]
++            gf = -dyn_state.links.contact_force.grad[la, i_b]
++            if lb >= 0:
++                gf += dyn_state.links.contact_force.grad[lb, i_b]
++            normal = collider_state.contact_data.normal[col, i_b]
++            mu = collider_state.contact_data.friction[col, i_b]
++            d1, d2 = gu.qd_orthogonals(normal)
++            gn = gs.qd_vec3(0.0, 0.0, 0.0)
++            gd1 = gs.qd_vec3(0.0, 0.0, 0.0)
++            gd2 = gs.qd_vec3(0.0, 0.0, 0.0)
++            for direction in qd.static(range(4)):
++                sign = qd.cast(2 * (direction % 2) - 1, gs.qd_float)
++                tangent = d1 if direction < 2 else d2
++                basis = sign * mu * tangent - normal
++                row = start + 4 * logical + direction
++                if qd.static(stage < 2):
++                    h = gf.dot(basis) * constraint_state.active[row, i_b]
++                    v = constraint_state.efc_D[row, i_b] * h
++                    if qd.static(stage == 0):
++                        for k in range(constraint_state.jac_n_dofs[row, i_b]):
++                            dof = constraint_state.jac_dofs_idx[row, k, i_b]
++                            constraint_state.dL_dqacc[dof, i_b] -= constraint_state.jac[row, dof, i_b] * v
++                    else:
++                        constraint_state.dL_daref[row, i_b] += v
++                        constraint_state.dL_defc_D[row, i_b] -= h * constraint_state.bw_w[row, i_b]
++                        for k in range(constraint_state.jac_n_dofs[row, i_b]):
++                            dof = constraint_state.jac_dofs_idx[row, k, i_b]
++                            constraint_state.dL_djac[row, dof, i_b] -= v * constraint_state.qacc[dof, i_b]
++                else:
++                    g_basis = gf * constraint_state.efc_force[row, i_b]
++                    gn -= g_basis
++                    if direction < 2:
++                        gd1 += sign * mu * g_basis
++                    else:
++                        gd2 += sign * mu * g_basis
++            if qd.static(stage == 2):
++                # qd_orthogonals: d1=b x n, d2=b, b=normalize(raw(n)).
++                n0, n1, n2 = normal[0], normal[1], normal[2]
++                branch = qd.abs(n1) < 0.5
++                raw = gs.qd_vec3(-n0 * n2, -n1 * n2, 1.0 - n2 * n2)
++                if branch:
++                    raw = gs.qd_vec3(-n0 * n1, 1.0 - n1 * n1, -n2 * n1)
++                b = raw / raw.norm()
++                gb = gd2 + normal.cross(gd1)
++                gn += gd1.cross(b)
++                gr = (gb - gb.dot(b) * b) / raw.norm()
++                if branch:
++                    gn[0] -= gr[0] * n1
++                    gn[1] -= gr[0] * n0 + 2.0 * gr[1] * n1 + gr[2] * n2
++                    gn[2] -= gr[2] * n1
++                else:
++                    gn[0] -= gr[0] * n2
++                    gn[1] -= gr[1] * n2
++                    gn[2] -= gr[0] * n0 + gr[1] * n1 + 2.0 * gr[2] * n2
++                collider_state.contact_data.normal.grad[col, i_b] += gn
++    if qd.static(stage == 2):
++        for i_l, i_b in qd.ndrange(dyn_state.links.contact_force.shape[0], dyn_state.links.contact_force.shape[1]):
++            dyn_state.links.contact_force.grad[i_l, i_b] = gs.qd_vec3(0.0, 0.0, 0.0)
+ 
+ 
+ @qd.func
+--- a/genesis/engine/solvers/rigid/rigid_solver.py
++++ b/genesis/engine/solvers/rigid/rigid_solver.py
+@@ -47,6 +47,8 @@
+     kernel_get_links_acc,
+     kernel_get_links_vel,
+     kernel_get_state,
++    kernel_get_walk_outputs,
++    kernel_seed_walk_output_grads,
+     kernel_set_dofs_act_bias,
+     kernel_set_dofs_act_gain,
+     kernel_set_dofs_armature,
+@@ -143,6 +145,7 @@
+ from .collider import Collider
+ from .constraint import ConstraintSolver
+ from .constraint.backward import (
++    kernel_contact_output_vjp,
+     kernel_accumulate_constraint_solver_grads,
+     kernel_load_dL_dqacc_from_acc_grad,
+     kernel_manual_add_collision_constraints_bw,
+@@ -562,6 +565,7 @@
+             backend=gs.backend,
+             para_level=self.sim._para_level,
+             requires_grad=self.sim.options.requires_grad,
++            differentiable_contact=self.sim.options.requires_grad or self._options.differentiable_contact,
+             use_hibernation=self._use_hibernation,
+             batch_links_info=self._options.batch_links_info,
+             batch_dofs_info=self._options.batch_dofs_info,
+@@ -1448,7 +1452,15 @@
+                 torch.mps.synchronize()
+         else:
+             kernel_load_dL_dqacc_from_acc_grad(self.dyn_state, constraint_state, self.rigid_config)
++        if self._enable_collision:
++            kernel_contact_output_vjp(
++                self.dyn_state, self.collider.collider_state, constraint_state, self.rigid_config, 0
++            )
+         self.constraint_solver.backward()
++        if self._enable_collision:
++            kernel_contact_output_vjp(
++                self.dyn_state, self.collider.collider_state, constraint_state, self.rigid_config, 1
++            )
+         if gs.use_zerocopy:
+             force_grad = qd_to_torch(self.dyn_state.dofs.force.grad, copy=False)
+             dL_dforce = qd_to_torch(constraint_state.dL_dforce, copy=False)
+@@ -1485,6 +1497,9 @@
+                 self.dyn_info,
+                 self.rigid_info,
+                 self.rigid_config,
++            )
++            kernel_contact_output_vjp(
++                self.dyn_state, collider_state, constraint_state, self.rigid_config, 2
+             )
+             self.collider.backward_narrowphase()
+ 
+@@ -1753,9 +1768,17 @@
+     # -------------------------------- state get/set -------------------------------------
+     # ------------------------------------------------------------------------------------
+ 
+-    def get_state(self, f=None):
++    def add_grad_from_state(self, state):
++        super().add_grad_from_state(state)
++        if self.is_active and state.links_vel is not None:
++            grads = [value.grad if value.grad is not None else torch.zeros_like(value)
++                     for value in (state.links_vel, state.links_ang, state.links_contact_force)]
++            kernel_seed_walk_output_grads(*grads, state.links_origin_delta, state.links_ang, self.dyn_state)
++
++    def get_state(self, f=None, *, include_walk_outputs=True):
+         if self.is_active:
+-            state = RigidSolverState(self._scene, self.sim.cur_step_global)
++            state = RigidSolverState(self._scene, self.sim.cur_step_global,
++                                     include_walk_outputs=include_walk_outputs)
+ 
+             # A captured state must be self-consistent: links_pos / links_quat have to be the Cartesian pose implied by
+             # the qpos captured alongside them, otherwise restoring it does not reproduce the configuration it was taken
+@@ -1775,6 +1798,9 @@
+                 self.rigid_config,
+             )
+             self._queried_states.append(state)
++            if include_walk_outputs:
++                kernel_get_walk_outputs(state.links_vel, state.links_ang, state.links_contact_force,
++                                        state.links_origin_delta, self.dyn_state)
+         else:
+             state = None
+         return state
+--- a/genesis/engine/states/solvers.py
++++ b/genesis/engine/states/solvers.py
+@@ -103,7 +103,7 @@
+     Dynamic state queried from a RigidSolver.
+     """
+ 
+-    def __init__(self, scene, s_global):
++    def __init__(self, scene, s_global, *, include_walk_outputs=True):
+         self.scene = scene
+ 
+         self._s_global = s_global
+@@ -115,11 +115,23 @@
+         self.links_pos = torch.zeros((_B, scene.sim.rigid_solver.n_links, 3), dtype=gs.tc_float, device=gs.device)
+         self.links_quat = torch.zeros((_B, scene.sim.rigid_solver.n_links, 4), dtype=gs.tc_float, device=gs.device)
+         self.friction_ratio = torch.ones((_B, scene.sim.rigid_solver.n_geoms), dtype=gs.tc_float, device=gs.device)
++        # PD substeps only consume qpos/dofs_vel. Keeping the additional link
++        # outputs alive at every read wastes hundreds of MB over an AD window.
++        if include_walk_outputs:
++            self.links_vel = torch.zeros_like(self.links_pos)
++            self.links_ang = torch.zeros_like(self.links_pos)
++            self.links_contact_force = torch.zeros_like(self.links_pos)
++            self.links_origin_delta = torch.zeros_like(self.links_pos)
++        else:
++            self.links_vel = self.links_ang = self.links_contact_force = self.links_origin_delta = None
+ 
+     @property
+     def grad_tensors(self):
+         """The tensors of the state that carry gradients."""
+-        return (self.qpos, self.dofs_vel, self.dofs_acc, self.links_pos, self.links_quat, self.friction_ratio)
++        core = (self.qpos, self.dofs_vel, self.dofs_acc, self.links_pos, self.links_quat, self.friction_ratio)
++        if self.links_vel is None:
++            return core
++        return (*core, self.links_vel, self.links_ang, self.links_contact_force)
+ 
+     @property
+     def s_global(self):
+--- a/genesis/options/scene.py
++++ b/genesis/options/scene.py
+@@ -64,21 +64,22 @@
+ 
+     def model_post_init(self, context) -> None:
+         # Validate rigid_options against sim_options
++        differentiable_contact = self.sim.requires_grad or self.rigid.differentiable_contact
+         if self.rigid.box_box_detection is None:
+-            self.rigid.box_box_detection = not self.sim.requires_grad
+-        elif self.rigid.box_box_detection and self.sim.requires_grad:
++            self.rigid.box_box_detection = not differentiable_contact
++        elif self.rigid.box_box_detection and differentiable_contact:
+             gs.raise_exception(
+-                "`rigid_options.box_box_detection` cannot be True when `sim_options.requires_grad` is True."
++                "`rigid_options.box_box_detection` cannot be True with differentiable contacts."
+             )
+         if self.rigid.use_gjk_collision is None:
+-            self.rigid.use_gjk_collision = self.sim.requires_grad
+-        elif not self.rigid.use_gjk_collision and self.sim.requires_grad:
++            self.rigid.use_gjk_collision = differentiable_contact
++        elif not self.rigid.use_gjk_collision and differentiable_contact:
+             gs.raise_exception(
+-                "`rigid_options.use_gjk_collision` cannot be False when `sim_options.requires_grad` is True."
++                "`rigid_options.use_gjk_collision` cannot be False with differentiable contacts."
+             )
+-        if self.rigid.enable_mujoco_compatibility and self.sim.requires_grad:
++        if self.rigid.enable_mujoco_compatibility and differentiable_contact:
+             gs.raise_exception(
+-                "`rigid_options.enable_mujoco_compatibility` cannot be True when `sim_options.requires_grad` is True."
++                "`rigid_options.enable_mujoco_compatibility` cannot be True with differentiable contacts."
+             )
+ 
+         # Each option inherits from the simulation options the values it leaves unset, on fields it declares.
+--- a/genesis/options/solvers.py
++++ b/genesis/options/solvers.py
+@@ -642,6 +642,9 @@
+     # GJK collision detection
+     use_gjk_collision: StrictBool | None = None
+     enable_contact_patch: StrictBool | None = None
++    # Use the same forward contact geometry as autodiff without allocating a tape.
++    # This permits matched model-free controls for differentiable-physics studies.
++    differentiable_contact: StrictBool = False
+ 
+     # broadphase configuration
+     broadphase_traversal: gs.broadphase_traversal | None = None
+--- a/genesis/utils/array_class.py
++++ b/genesis/utils/array_class.py
+@@ -1296,6 +1296,10 @@
+     # Plane-convex contacts only: the convex support "core" (box vertex / sphere center / capsule nearest endpoint)
+     # in the convex geom's local frame.
+     core_local: qd.Tensor
++    # Plane-cylinder analytic multi-contact detection which produced this slot.
++    # Selection stays discrete; the selected support/perturbation is rebuilt
++    # from the current poses for its exact piecewise derivative.
++    plane_detection_id: qd.Tensor
+     # Reference id of the contact point, which is needed for the backward pass
+     ref_id: qd.Tensor
+     # Flag whether the contact data can be computed in numerically stable way in both the forward and backward passes
+@@ -1305,8 +1309,8 @@
+     ref_penetration: qd.Tensor
+ 
+ 
+-def get_diff_contact_input(_B, max_contacts_per_pair, is_active, requires_grad=False):
+-    shape = maybe_shape((_B, max_contacts_per_pair), is_active and requires_grad)
++def get_diff_contact_input(_B, max_contacts_per_pair, is_active, requires_grad=False, differentiable_contact=False):
++    shape = maybe_shape((_B, max_contacts_per_pair), is_active and (requires_grad or differentiable_contact))
+     return DiffContactInput(
+         geom_a=V(dtype=gs.qd_int, shape=shape),
+         geom_b=V(dtype=gs.qd_int, shape=shape),
+@@ -1319,9 +1323,10 @@
+         w_local_pos1=V_VEC(3, dtype=gs.qd_float, shape=shape),
+         w_local_pos2=V_VEC(3, dtype=gs.qd_float, shape=shape),
+         core_local=V_VEC(3, dtype=gs.qd_float, shape=shape),
++        plane_detection_id=V(dtype=gs.qd_int, shape=shape),
+         ref_id=V(dtype=gs.qd_int, shape=shape),
+         valid=V(dtype=gs.qd_int, shape=shape),
+-        ref_penetration=V(dtype=gs.qd_float, shape=shape, needs_grad=True),
++        ref_penetration=V(dtype=gs.qd_float, shape=shape, needs_grad=requires_grad),
+     )
+ 
+ 
+@@ -1908,10 +1913,14 @@
+         distance=V(dtype=gs.qd_float, shape=(_B,)),
+         nearest_face=V(dtype=gs.qd_int, shape=(_B,)),
+         diff_contact_input=get_diff_contact_input(
+-            _B, max(max_contacts_per_pair, 1), is_active=True, requires_grad=requires_grad
++            _B, max(max_contacts_per_pair, 1), is_active=True, requires_grad=requires_grad,
++            differentiable_contact=rigid_config.differentiable_contact,
+         ),
+         n_diff_contact_input=V(dtype=gs.qd_int, shape=(_B,)),
+-        diff_penetration=V(dtype=gs.qd_float, shape=maybe_shape((_B, max_contacts_per_pair), requires_grad)),
++        diff_penetration=V(
++            dtype=gs.qd_float,
++            shape=maybe_shape((_B, max_contacts_per_pair), rigid_config.differentiable_contact),
++        ),
+     )
+ 
+ 
+@@ -3064,6 +3073,7 @@
+     integrator: int
+     solver_type: int
+     requires_grad: bool
++    differentiable_contact: bool = False
+     prefer_decomposed_solver: int = -1  # -1 = None (auto), 0 = False, 1 = True
+     # Whether the cone-free assembled Hessian is persisted in nt_H's mirror slots (diagonal in nt_H_cone_free_diag);
+     # see the nt_H declaration for the packed-storage mechanics and the rigid solver's resolution for the gating.

@@ -1,0 +1,69 @@
+[38;5;159m[Genesis] [20:18:07] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m32[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] Scene [38;5;121m[3m<e31e057>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_e4756dc[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:18:07] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_662b234[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:18:07] [INFO] Building scene [38;5;121m[3m<e31e057>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [20:18:10] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/ast/ast_transformers/function_def_transformer.py:781: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  return index == 0 and isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str))
+[38;5;159m[Genesis] [20:18:17] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [20:18:17] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+[38;5;159m[Genesis] [20:18:18] [INFO] Scene [38;5;121m[3m<260e0b8>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [20:18:18] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_9834458[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [20:18:18] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [20:18:18] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;159m[Genesis] [20:18:18] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_61efe34[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:18:18] [INFO] Building scene [38;5;121m[3m<260e0b8>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [20:18:21] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [20:18:28] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [20:18:28] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+{"mismatch": "reward", "error": 0.0031347572803497314, "left": [0.11150597035884857, 0.02930642105638981], "right": [0.10837121307849884, 0.03217979520559311]}
+{"mismatch": "reward/LinVelXYReward", "error": 4.611397162079811e-05, "left": [0.005907285492867231, 0.00490683363750577], "right": [0.0059533994644880295, 0.004911580588668585]}
+{"mismatch": "reward/LinVelZPenalty", "error": 0.0014941785484552383, "left": [-0.01828000135719776, -0.014255650341510773], "right": [-0.019774179905653, -0.013301136903464794]}
+{"mismatch": "reward/OrientationPenalty", "error": 0.042487092316150665, "left": [-0.013055790215730667, -0.04821094870567322], "right": [-0.015215929597616196, -0.005723854526877403]}
+{"mismatch": "reward/BodyRollPenalty", "error": 0.08962822705507278, "left": [-0.01262457575649023, -0.13894976675510406], "right": [-0.04147578030824661, -0.04932153970003128]}
+{"mismatch": "reward/G1FeetHeightPenalty", "error": 0.03962065279483795, "left": [-0.2883678078651428, -0.23170147836208344], "right": [-0.28464800119400024, -0.2713221311569214]}
+{"mismatch": "reward/Total", "error": 0.0031347572803497314, "left": [0.11150597035884857, 0.02930642105638981], "right": [0.10837121307849884, 0.03217979520559311]}
+{"mismatch": "reward/TotalNegative", "error": 0.09344333410263062, "left": [-0.4942382872104645, -0.601309597492218], "right": [-0.5230053663253784, -0.5078662633895874]}
+{"mismatch": "actor", "error": 0.1023435890674591, "left": [-0.011613298207521439, 0.00885733962059021, -0.02006427012383938, 0.002605586778372526, 0.024984989315271378, -0.006297273561358452, -0.01434062235057354, -0.004842496011406183, 0.014224735088646412, 0.03357144072651863, 0.0039523146115243435, 0.019277626648545265], "right": [-0.011613298207521439, 0.00885733962059021, -0.02006427012383938, 0.002605586778372526, 0.024984989315271378, -0.006297273561358452, -0.01434062235057354, -0.004842496011406183, 0.014224735088646412, 0.03357144072651863, 0.0039523146115243435, 0.019277626648545265]}
+{"mismatch": "critic", "error": 0.1023435890674591, "left": [-0.011613298207521439, 0.00885733962059021, -0.02006427012383938, 0.002605586778372526, 0.024984989315271378, -0.006297273561358452, -0.01434062235057354, -0.004842496011406183, 0.014224735088646412, 0.03357144072651863, 0.0039523146115243435, 0.019277626648545265], "right": [-0.011613298207521439, 0.00885733962059021, -0.02006427012383938, 0.002605586778372526, 0.024984989315271378, -0.006297273561358452, -0.01434062235057354, -0.004842496011406183, 0.014224735088646412, 0.03357144072651863, 0.0039523146115243435, 0.019277626648545265]}
+{"mismatch": "qpos", "error": 1.2242275476455688, "left": [-0.001448404393158853, 0.0011051447363570333, 0.7972642183303833, 0.9600606560707092, 0.028116777539253235, -0.029053274542093277, 0.2768554091453552, -0.10706861317157745, 0.020276805385947227, 0.11367083340883255, 0.3628706634044647, -0.32635238766670227], "right": [0.0015175167936831713, -0.000967441126704216, 0.7971473932266235, 0.31714436411857605, -0.04364926740527153, -0.0006029966752976179, -0.9473721385002136, -0.10706861317157745, 0.020276810973882675, 0.11367083340883255, 0.3628706932067871, -0.3263523578643799]}
+{"mismatch": "qd", "error": 0.21282076835632324, "left": [-0.10370851308107376, 0.08316562324762344, -0.21377559006214142, -0.6269471645355225, 0.1198311299085617, -0.1752517819404602, -0.39886364340782166, 0.09396128356456757, -1.0256056785583496, 0.19392666220664978, 0.6015914678573608, 0.43709829449653625], "right": [0.10911226272583008, -0.07340718805789948, -0.22234083712100983, -0.6269473433494568, 0.11983135342597961, -0.17525239288806915, -0.3988637626171112, 0.09396174550056458, -1.0256059169769287, 0.19392675161361694, 0.6015914678573608, 0.43709835410118103]}
+{"mismatch": "poses", "error": 0.5439028739929199, "left": [-0.001448404393158853, 0.0011051447363570333, 0.7972642183303833, -0.03168581798672676, 0.06277157366275787, 0.6973427534103394, -0.055444519966840744, 0.11056583374738693, 0.6693543791770935, -0.0028032001573592424, 0.15158303081989288, 0.5617564916610718], "right": [0.0015175167936831713, -0.000967441126704216, 0.7971473932266235, 0.031796153634786606, -0.05541487783193588, 0.6931279897689819, 0.05796419829130173, -0.09978385269641876, 0.6618431210517883, 0.00369392242282629, -0.14020545780658722, 0.5548307299613953]}
+{"mismatch": "velocity", "error": 0.23476935923099518, "left": [-0.10370850563049316, 0.08316562324762344, -0.21377559006214142, -0.06860468536615372, 0.03104604035615921, -0.2565639615058899, -0.042056724429130554, 0.02604425512254238, -0.2876412272453308, 0.020896801725029945, -0.016494737938046455, -0.2730579674243927], "right": [0.10911226272583008, -0.07340718805789948, -0.22234083712100983, 0.06789550930261612, -0.022529248148202896, -0.26096978783607483, 0.03956624120473862, -0.018370848149061203, -0.2905631959438324, -0.025843309238553047, 0.018111318349838257, -0.2711717486381531]}
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_walk_equivalence.py", line 239, in <module>
+    validate(options.output)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_walk_equivalence.py", line 122, in validate
+    assert not failures, f"Forward step {step} differs: {failures}"
+           ^^^^^^^^^^^^
+AssertionError: Forward step 0 differs: ['reward', 'reward/LinVelXYReward', 'reward/LinVelZPenalty', 'reward/OrientationPenalty', 'reward/BodyRollPenalty', 'reward/G1FeetHeightPenalty', 'reward/Total', 'reward/TotalNegative', 'actor', 'critic', 'qpos', 'qd', 'poses', 'velocity']
+
+[38;5;9m[Genesis] [20:18:35] [ERROR] AssertionError: Forward step 0 differs: ['reward', 'reward/LinVelXYReward', 'reward/LinVelZPenalty', 'reward/OrientationPenalty', 'reward/BodyRollPenalty', 'reward/G1FeetHeightPenalty', 'reward/Total', 'reward/TotalNegative', 'actor', 'critic', 'qpos', 'qd', 'poses', 'velocity'][0m
+[38;5;159m[Genesis] [20:18:35] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m

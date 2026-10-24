@@ -1,0 +1,19 @@
+fatal: detected dubious ownership in repository at '/mnt/big_disk/limh24/genesis-shac-20261023/private_engine'
+To add an exception for this directory, call:
+
+	git config --global --add safe.directory /mnt/big_disk/limh24/genesis-shac-20261023/private_engine
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_shac_gradients.py", line 297, in <module>
+    validate(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_shac_gradients.py", line 29, in validate
+    engine = activate()
+             ^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/utils/shac_engine.py", line 20, in activate
+    commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=engine, text=True).strip()
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py", line 466, in check_output
+    return run(*popenargs, stdout=PIPE, timeout=timeout, check=True,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/.local/share/uv/python/cpython-3.12.14-linux-x86_64-gnu/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['git', 'rev-parse', 'HEAD']' returned non-zero exit status 128.

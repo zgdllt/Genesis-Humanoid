@@ -1,0 +1,69 @@
+[38;5;159m[Genesis] [20:03:33] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:03:33] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:03:33] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:03:33] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [20:03:33] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m64[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:03:33] [INFO] Scene [38;5;121m[3m<0082842>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [20:03:33] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_c01ac25[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:33] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:03:34] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [20:03:34] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_eb58695[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:34] [INFO] Building scene [38;5;121m[3m<0082842>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/a2bb41887c682e4d6bac136833715d0bda5f74d39a21507f74786c9bcc9a3e5c.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/40a26771f7e7670ea37e19d2a584159b1074f0cfe8694875785ed16fed3d3980.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/9b63b941d7680aaa1e9fe9c7a777851c60f117b5c0a46e7ae6cea96e6b011705.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/cd6cadcee566474ea49da35f673a0b99424d899df7775d8ec98feb435d736677.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/ed3cd38697c53d7182e52e4f4e505a496c1bf670d164732d6ed0498c9e8b1671.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/e21ea2f8618126ec6c9c89dbd519686634c9a3fbbceb7bebd519fdad9241789a.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/059b868e0edd3e86270d8f673358259bc3c5bfbc347113a29e2f81e270b48a31.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/00e68cb0b5b30e0c5dd8666d65d5699c4489b41f9153947f2c557d79845522a7.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/a2ca64cbbef180d8293bff89067811d49089cf86e041bb2a929ff840524663d4.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:39] [INFO] Preprocessing SDF of mesh [38;5;121m/home/limh24/.cache/genesis/gsd/acab3ad20df9bbc37a352b6955bd76742ff5186d89898fb64abee5ecc06c8465.gsd[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:03:46] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [20:04:08] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [20:04:11] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_shac_gradients.py", line 131, in <module>
+    validate(options.output, options.horizons, options.epsilon, options.precision)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_shac_gradients.py", line 22, in validate
+    env = DifferentiableWalkingEnv(
+          ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 56, in __init__
+    super().__init__(*args, **kwargs)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/walking_env.py", line 31, in __init__
+    super().__init__(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/leggedrobot_env.py", line 109, in __init__
+    self.reset()
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/common/bases/base_env.py", line 21, in reset
+    self.reset_idx(envs_idx=envs_idx)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/walking_env.py", line 105, in reset_idx
+    super().reset_idx(envs_idx=envs_idx)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/leggedrobot_env.py", line 290, in reset_idx
+    self._robot.set_state(pos=default_pos, quat=quat, dof_pos=dof_pos, envs_idx=envs_idx)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/robots/leggedrobots.py", line 389, in set_state
+    self._dof_pos[envs_idx] = dof_pos.clone()
+    ~~~~~~~~~~~~~^^^^^^^^^^
+RuntimeError: Index put requires the source and destination dtypes match, got Float for the destination and Double for the source.
+
+[38;5;9m[Genesis] [20:04:12] [ERROR] RuntimeError: Index put requires the source and destination dtypes match, got Float for the destination and Double for the source.[0m
+[38;5;159m[Genesis] [20:04:12] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m

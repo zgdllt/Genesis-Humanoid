@@ -1,0 +1,10 @@
+{
+  "phase": "complete",
+  "iteration": 10,
+  "train_env_steps": 983040,
+  "eval_env_steps": 256000,
+  "wall_time_s": 348.34716348699294,
+  "active_train_s": 290.13206813810393,
+  "eval_time_s": 16.795098047121428,
+  "swanlab_url": "https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/int9z1vu"
+}

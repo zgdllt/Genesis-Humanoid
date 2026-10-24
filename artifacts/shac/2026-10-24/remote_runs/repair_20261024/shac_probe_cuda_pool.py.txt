@@ -1,0 +1,86 @@
+"""Diagnostic only: full evaluator footprint with a two-update debug run."""
+
+import argparse
+import ctypes
+import importlib.util
+import json
+from pathlib import Path
+
+ROOT = Path('/home/limh24/workspace/Genesis-Humanoid-shac')
+OUTPUT = Path('/mnt/big_disk/limh24/genesis-shac-20261023/repair_20261024/pool_probe')
+driver = ctypes.CDLL('libcuda.so.1')
+driver.cuDeviceGetMemPool.argtypes = [ctypes.POINTER(ctypes.c_void_p), ctypes.c_int]
+driver.cuDeviceGetMemPool.restype = ctypes.c_int
+driver.cuMemPoolGetAttribute.argtypes = [ctypes.c_void_p, ctypes.c_int, ctypes.c_void_p]
+driver.cuMemPoolGetAttribute.restype = ctypes.c_int
+driver.cuMemPoolTrimTo.argtypes = [ctypes.c_void_p, ctypes.c_size_t]
+driver.cuMemPoolTrimTo.restype = ctypes.c_int
+driver.cuCtxGetLimit.argtypes = [ctypes.POINTER(ctypes.c_size_t), ctypes.c_int]
+driver.cuCtxGetLimit.restype = ctypes.c_int
+
+
+def check(result):
+    if result:
+        raise RuntimeError(f'CUDA driver probe returned {result}')
+
+
+spec = importlib.util.spec_from_file_location('walk_runner', ROOT / 'examples/run_walk_benchmark.py')
+runner = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(runner)
+activate = runner.activate
+
+
+def traced_activate():
+    metadata = activate()
+    import torch
+    from gs_agent.utils.walk_benchmark import WalkEvaluator
+    from gs_env.sim.envs.locomotion.differentiable_walking_env import DifferentiableWalkingEnv
+
+    original_backward = DifferentiableWalkingEnv.backward_window
+    original_eval = WalkEvaluator.__init__
+    window = 0
+
+    def report(stage, pool):
+        reserved, used, threshold = (ctypes.c_uint64() for _ in range(3))
+        check(driver.cuMemPoolGetAttribute(pool, 5, ctypes.byref(reserved)))
+        check(driver.cuMemPoolGetAttribute(pool, 7, ctypes.byref(used)))
+        check(driver.cuMemPoolGetAttribute(pool, 4, ctypes.byref(threshold)))
+        stack = ctypes.c_size_t()
+        check(driver.cuCtxGetLimit(ctypes.byref(stack), 0))
+        free, total = torch.cuda.mem_get_info()
+        row = dict(window=window, stage=stage, pool_reserved=reserved.value,
+                   pool_used=used.value, pool_threshold=threshold.value,
+                   context_stack_limit=stack.value, device_free=free, device_total=total,
+                   torch_reserved=torch.cuda.memory_reserved(),
+                   torch_allocated=torch.cuda.memory_allocated())
+        print('CUDA_POOL ' + json.dumps(row), flush=True)
+        with (OUTPUT / 'cuda_pool.jsonl').open('a') as stream:
+            stream.write(json.dumps(row) + '\n')
+
+    def backward(self, loss):
+        nonlocal window
+        window += 1
+        torch.cuda.synchronize()
+        pool = ctypes.c_void_p()
+        check(driver.cuDeviceGetMemPool(ctypes.byref(pool), torch.cuda.current_device()))
+        report('before_trim', pool)
+        check(driver.cuMemPoolTrimTo(pool, 0))
+        torch.cuda.synchronize()
+        report('after_trim', pool)
+        original_backward(self, loss)
+        report('after_backward', pool)
+
+    def full_eval(self, num_envs=128, steps=1000):
+        original_eval(self, num_envs=128, steps=1000)
+
+    DifferentiableWalkingEnv.backward_window = backward
+    WalkEvaluator.__init__ = full_eval
+    return metadata
+
+
+runner.activate = traced_activate
+options = argparse.Namespace(algorithm='shac', debug=True, num_envs=4096,
+                             iterations=2, seed=0, swanlab_mode='cloud', output=str(OUTPUT))
+print('Diagnostic overrides: debug=True; full 128-env x 1000-step evaluator; CUDA pool trim probe', flush=True)
+with runner.ExclusiveGPU():
+    runner.train(options)

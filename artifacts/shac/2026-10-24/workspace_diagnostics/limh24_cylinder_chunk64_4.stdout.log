@@ -1,0 +1,138 @@
+[38;5;159m[Genesis] [22:06:08] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [22:06:08] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [22:06:08] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [22:06:08] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [22:06:08] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m32[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+swanlab: Tracking run with swanlab version 0.10.2
+swanlab: 💾 Run data saved at 
+/home/limh24/workspace/Genesis-Humanoid-shac/logs/shac/limh24_cylinder_chunk64_4
+/swanlab/run-20261023_220608-56tcbdxy
+swanlab: 📁 View project at https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo
+swanlab: 🚀 View run debug-shac-n4096-seed0 at 
+https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/56tcbdxy
+{"swanlab_url": "https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/56tcbdxy", "run_dir": "/home/limh24/workspace/Genesis-Humanoid-shac/logs/shac/limh24_cylinder_chunk64_4"}
+[38;5;159m[Genesis] [22:06:09] [INFO] Scene [38;5;121m[3m<56bdded>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [22:06:09] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_5c0d828[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:09] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:10] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:10] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:10] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:10] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:10] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [22:06:10] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [22:06:10] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_c7debf8[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [22:06:10] [INFO] Building scene [38;5;121m[3m<56bdded>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [22:06:12] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [22:06:17] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [22:06:17] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+Policy backbone: MLPBackbone(
+  (_network): Sequential(
+    (0): Linear(in_features=96, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=256, out_features=256, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=128, out_features=29, bias=True)
+  )
+)
+Critic backbone: MLPBackbone(
+  (_network): Sequential(
+    (0): Linear(in_features=103, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=256, out_features=256, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+Device:  cuda
+[38;5;159m[Genesis] [22:06:19] [INFO] Scene [38;5;121m[3m<191f7d9>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [22:06:19] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_4b5684b[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [22:06:19] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [22:06:19] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;159m[Genesis] [22:06:19] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_c45da75[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [22:06:19] [INFO] Building scene [38;5;121m[3m<191f7d9>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [22:06:21] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/ast/ast_transformers/function_def_transformer.py:781: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  return index == 0 and isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str))
+[38;5;159m[Genesis] [22:06:26] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [22:06:26] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+{"iteration": 0, "counters": {"train_env_steps": 0, "eval_env_steps": 1024, "forward_physics_substeps": 0, "wall_time_s": 23.7946738130413, "active_train_s": 0.0, "eval_time_s": 1.6448924549622461, "iteration": 0}, "quality": {"return": 10.32466983795166, "survival": 1.0, "velocity_rmse": 0.6027513146400452, "yaw_rmse": 0.4696066975593567, "foot_slip": 0.0007502568187192082, "mean_survival_seconds": 1.2799999713897705, "command_0_survival": 1.0, "command_1_survival": 1.0, "command_2_survival": 1.0, "command_3_survival": 1.0, "command_4_survival": 1.0, "command_5_survival": 1.0, "command_6_survival": 1.0, "command_7_survival": 1.0}}
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_func_base.py:831: UserWarning: The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad attribute won't be populated during autograd.backward(). If you indeed want the .grad field to be populated for a non-leaf Tensor, use .retain_grad() on the non-leaf Tensor. If you access the non-leaf Tensor by mistake, make sure you access the leaf Tensor instead. See github.com/pytorch/pytorch/pull/30531 for more information. (Triggered internally at /pytorch/build/aten/src/ATen/core/TensorBody.h:492.)
+  if v.requires_grad and v.grad is None:
+[E 10/23/26 22:06:47.587 2798710] [cuda_driver.h:operator()@94] CUDA Error CUDA_ERROR_OUT_OF_MEMORY: out of memory while calling launch_kernel (cuLaunchKernel)
+
+
+swanlab: 📁 View project at https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo
+swanlab: 🚀 View run debug-shac-n4096-seed0 at 
+https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/56tcbdxy
+swanlab: Upload complete: 217 records
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 233, in <module>
+    train(options)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 174, in train
+    metrics = algorithm.train_one_iteration()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/shac.py", line 87, in train_one_iteration
+    self.env.backward_window(actor_loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 250, in backward_window
+    self._scene.scene.backward(loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 166, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/scene.py", line 1039, in backward
+    torch.autograd.backward(loss, *args, **kwargs)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/function.py", line 317, in apply
+    return user_fn(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/grad/bridge.py", line 46, in backward
+    inputs_grad = sim.reverse_step(ctx.step, ctx.epoch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 358, in reverse_step
+    inputs_grad_pairs = self._step_grad()
+                        ^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 451, in _step_grad
+    self.sub_step_grad(self.cur_substep_local)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 476, in sub_step_grad
+    self.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 485, in substep_pre_coupling_grad
+    solver.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1723, in substep_pre_coupling_grad
+    self._constraint_force_grad()
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1504, in _constraint_force_grad
+    self.collider.backward_narrowphase()
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/collider/collider.py", line 1063, in backward_narrowphase
+    func_narrow_phase_diff_convex_vs_convex.grad(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 1056, in __call__
+    ret = self.launch_kernel(key, kernel_cpp, compiled_kernel_data, *py_args, qd_stream=qd_stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 856, in launch_kernel
+    raise e from None
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 848, in launch_kernel
+    prog.launch_kernel(compiled_kernel_data, launch_ctx)
+RuntimeError: [cuda_driver.h:operator()@94] CUDA Error CUDA_ERROR_OUT_OF_MEMORY: out of memory while calling launch_kernel (cuLaunchKernel)
+
+[38;5;9m[Genesis] [22:06:48] [ERROR] RuntimeError: [cuda_driver.h:operator()@94] CUDA Error CUDA_ERROR_OUT_OF_MEMORY: out of memory while calling launch_kernel (cuLaunchKernel)[0m
+[38;5;159m[Genesis] [22:06:48] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m

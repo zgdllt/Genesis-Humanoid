@@ -1,0 +1,40 @@
+{
+  "pid": 3514298,
+  "ssh": "limh24",
+  "host": "limh24-ASUS",
+  "started_at": "2026-10-24T12:37:19.257216+08:00",
+  "source_root": "/home/limh24/workspace/Genesis-Humanoid-shac",
+  "output": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_pdcore1",
+  "stdout_log": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_pdcore1.stdout.log",
+  "command": [
+    "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/bin/python",
+    "-u",
+    "examples/run_walk_benchmark.py",
+    "--algorithm",
+    "shac",
+    "--num-envs",
+    "4096",
+    "--iterations",
+    "50000",
+    "--seed",
+    "0",
+    "--output",
+    "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_pdcore1"
+  ],
+  "runtime_environment": {
+    "QD_OFFLINE_CACHE_FILE_PATH": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/quadrants",
+    "GS_CACHE_FILE_PATH": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/genesis",
+    "TMPDIR": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/tmp"
+  },
+  "gradient_gate": "/home/limh24/workspace/Genesis-Humanoid-shac/logs/shac/gradient_gate.json",
+  "capacity_proof": "/mnt/big_disk/limh24/genesis-shac-20261023/repair_20261024/fullfootprint_pd10",
+  "capacity_updates": 10,
+  "evaluation_execution": {
+    "num_envs": 128,
+    "steps": 1000,
+    "interval": 1000,
+    "curriculum_iterations": 50000
+  },
+  "engine_patch_sha256": "20f168d0cbc59a761d36096ca1986192714be7fb0f3c49b2e2b653575c8eccac",
+  "common_hash": "a38e92c9daab7314b577ec1c608a392f8655815b8df7633a41959e0504c20515"
+}

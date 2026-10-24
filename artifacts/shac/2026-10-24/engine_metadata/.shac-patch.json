@@ -1,0 +1,18 @@
+{
+  "upstream": "1b6dfa927f3836d49cf80df7a024116499e68d15",
+  "patch_sha256": "20f168d0cbc59a761d36096ca1986192714be7fb0f3c49b2e2b653575c8eccac",
+  "source_hashes": {
+    "genesis/engine/solvers/rigid/abd/accessor.py": "e16b8d15404ec06e64f14f0111d441e16d3dfaa1b759b87d579ba0dc0782e0b8",
+    "genesis/engine/solvers/rigid/collider/collider.py": "4a970c0c5d18f0d406a87fa6883a0e7f03bb31ace4186f0f54945f1d82d59a08",
+    "genesis/engine/solvers/rigid/collider/contact.py": "de53711547007d1386d36b53fbdde4a0f85631cfa45fa38c7ab8de3d82eeb2fa",
+    "genesis/engine/solvers/rigid/collider/gjk.py": "6c5cafc2ddcbf82b7f83024a57786b7b1059e951b65820e86c11872a02ca7f06",
+    "genesis/engine/solvers/rigid/collider/narrowphase.py": "f9d01a7f9fbeee4dc7a0cc0700fcdf663545be2fa2c5177e1b311c4e643a95b4",
+    "genesis/engine/solvers/rigid/collider/support_field.py": "7d243016e6ba433a318eec4c692818fa9db774754cccc11bc549ce41b1dce6c0",
+    "genesis/engine/solvers/rigid/constraint/backward.py": "56eb23dc6b424b29bf2ff281dd1c5ab63b49fd51189f5b09a0c233c489cd693b",
+    "genesis/engine/solvers/rigid/rigid_solver.py": "4d738b1f7c4ecbd2d40f6d40d5e048a49de707523d49e12e1bc43f23cedf36e3",
+    "genesis/engine/states/solvers.py": "8389f2634a4bf3477817cace8ed8e3f248a3dbebf2661ef6a143fa2ebc330077",
+    "genesis/options/scene.py": "1701d5056dfcbcc8c8048c3c92f5277346c40253db57f3eb406b5c7ad0fdfa4b",
+    "genesis/options/solvers.py": "c86c35cf6734b7af1058f505373c680232deb5a620850dec96c1a2b145c8eea1",
+    "genesis/utils/array_class.py": "7aa4dd1558fe4ffea790860f626a85329f538733cc1eb281f24cc87d24ac6293"
+  }
+}

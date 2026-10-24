@@ -1,0 +1,38 @@
+{
+  "pid": 3351421,
+  "ssh": "limh24",
+  "host": "limh24-ASUS",
+  "started_at": "2026-10-24T10:07:38.853410+08:00",
+  "source_root": "/home/limh24/workspace/Genesis-Humanoid-shac",
+  "output": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_memfix1",
+  "stdout_log": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_memfix1.stdout.log",
+  "command": [
+    "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/bin/python",
+    "-u",
+    "examples/run_walk_benchmark.py",
+    "--algorithm",
+    "shac",
+    "--num-envs",
+    "4096",
+    "--iterations",
+    "50000",
+    "--seed",
+    "0",
+    "--output",
+    "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_memfix1"
+  ],
+  "runtime_environment": {
+    "QD_OFFLINE_CACHE_FILE_PATH": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/quadrants",
+    "GS_CACHE_FILE_PATH": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/genesis",
+    "TMPDIR": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/tmp"
+  },
+  "previous_failed_run": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0",
+  "engine_patch_sha256": "c99ea5fb882b6a75a27414a8697e1eb5977b5d4efc910e99a55376815921acb5",
+  "adapter_sha256": "2d04b24b60489c556326b69910c7b6db59c468d54573a6aee6500f118766f3df",
+  "common_hash": "a38e92c9daab7314b577ec1c608a392f8655815b8df7633a41959e0504c20515",
+  "formal_budget": {
+    "num_envs": 4096,
+    "iterations": 50000,
+    "seed": 0
+  }
+}

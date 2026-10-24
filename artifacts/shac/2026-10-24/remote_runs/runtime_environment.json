@@ -1,0 +1,5 @@
+{
+  "QD_OFFLINE_CACHE_FILE_PATH": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/quadrants",
+  "GS_CACHE_FILE_PATH": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/genesis",
+  "TMPDIR": "/mnt/big_disk/limh24/genesis-shac-20261023/cache/tmp"
+}

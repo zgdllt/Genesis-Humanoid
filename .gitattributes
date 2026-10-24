@@ -1,0 +1,5 @@
+# Preserve literal patch/log bytes without treating their context whitespace as code edits.
+patches/*.patch -text -whitespace
+artifacts/shac/** -text -whitespace linguist-generated=true
+artifacts/shac/**/README.md linguist-generated=false
+artifacts/shac/**/MANIFEST.json linguist-generated=false

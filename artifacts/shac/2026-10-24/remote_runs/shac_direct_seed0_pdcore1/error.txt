@@ -1,0 +1,38 @@
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 185, in train
+    metrics = algorithm.train_one_iteration()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/shac.py", line 87, in train_one_iteration
+    self.env.backward_window(actor_loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 269, in backward_window
+    self._scene.scene.backward(loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 166, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/scene.py", line 1039, in backward
+    torch.autograd.backward(loss, *args, **kwargs)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/function.py", line 317, in apply
+    return user_fn(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/grad/bridge.py", line 46, in backward
+    inputs_grad = sim.reverse_step(ctx.step, ctx.epoch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 358, in reverse_step
+    inputs_grad_pairs = self._step_grad()
+                        ^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 451, in _step_grad
+    self.sub_step_grad(self.cur_substep_local)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 476, in sub_step_grad
+    self.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 485, in substep_pre_coupling_grad
+    solver.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1705, in substep_pre_coupling_grad
+    gs.raise_exception(f"Nan grad in qpos or dofs_vel found at step {self._sim.cur_step_global}")
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 40, in raise_exception
+    raise gs.GenesisException(msg)
+genesis.GenesisException: Nan grad in qpos or dofs_vel found at step 91

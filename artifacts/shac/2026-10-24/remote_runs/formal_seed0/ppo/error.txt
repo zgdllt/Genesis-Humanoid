@@ -1,0 +1,49 @@
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 174, in train
+    metrics = algorithm.train_one_iteration()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/ppo.py", line 312, in train_one_iteration
+    rollout_infos = self._collect_rollouts(num_steps=self._num_steps)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/ppo.py", line 131, in _collect_rollouts
+    _, reward, terminated, truncated, _extra_infos = self.env.step(action)
+                                                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/wrappers/gs_env_wrapper.py", line 41, in step
+    self.env.apply_action(action)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 83, in apply_action
+    super().apply_action(action)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/walking_env.py", line 111, in apply_action
+    super().apply_action(action=action)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/leggedrobot_env.py", line 467, in apply_action
+    self._scene.scene.step(refresh_visualizer=False, update_visualizer=False)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 166, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/scene.py", line 1087, in step
+    self._sim.step()
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 417, in step
+    self.rigid_solver.substep(self.cur_substep_local)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1345, in substep
+    func_solve_body(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_perf_dispatch.py", line 281, in __call__
+    return self._cached_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_perf_dispatch.py", line 60, in __call__
+    return self.__wrapped__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/constraint/solver_breakdown.py", line 377, in func_solve_decomposed
+    _kernel_solve_graph(constraint_state.graph_counter, dyn_state, constraint_state, dyn_info, rigid_info, rigid_config)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_quadrants_callable.py", line 101, in __call__
+    return self.wrapper.__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel_impl.py", line 180, in wrapped_func
+    return primal(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 1056, in __call__
+    ret = self.launch_kernel(key, kernel_cpp, compiled_kernel_data, *py_args, qd_stream=qd_stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 848, in launch_kernel
+    prog.launch_kernel(compiled_kernel_data, launch_ctx)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/swanlab/sdk/internal/run/__init__.py", line 210, in _handle_sigint
+    self._original_sigint_handler(signum, frame)
+KeyboardInterrupt

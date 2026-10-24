@@ -129,13 +129,19 @@ class PPO(BaseAlgo):
                 action, log_prob, mu, sigma = self._actor.forward_with_dist_params(actor_obs)
                 # Step environment
                 _, reward, terminated, truncated, _extra_infos = self.env.step(action)
+                raw_reward = reward
                 next_actor_obs, next_critic_obs = self.env.get_observations()
 
                 # add next value to reward of truncated steps
                 if "time_outs" in _extra_infos:
                     time_outs = _extra_infos["time_outs"]
+                    physical = torch.zeros_like(time_outs, dtype=torch.bool)
+                    for name, mask in _extra_infos.get("termination", {}).items():
+                        if name != "any":
+                            physical |= mask.reshape_as(physical)
+                    time_outs = time_outs * ~physical
                     next_values = self._critic(_extra_infos["observations"]["critic"])
-                    reward = reward + next_values * time_outs
+                    reward = reward + self.cfg.gamma * next_values * time_outs
 
                 # all tensors are of shape: [num_envs, dim]
                 transition = {
@@ -153,7 +159,7 @@ class PPO(BaseAlgo):
 
                 # Update episode tracking - handle reward and done sequences
                 # Extract tensors from reward and done objects
-                self._curr_reward_sum += reward.squeeze(-1)
+                self._curr_reward_sum += raw_reward.squeeze(-1)
                 self._curr_ep_len += 1
 
                 # Update termination buffer

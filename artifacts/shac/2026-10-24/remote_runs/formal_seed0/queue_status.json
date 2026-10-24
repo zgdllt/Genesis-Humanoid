@@ -1,0 +1,9 @@
+{
+  "phase": "interrupted_by_user",
+  "stopped_at": "2026-10-23T22:51:13+0800",
+  "reason": "User requested direct SHAC instead of waiting for PPO",
+  "parent_pid": 2829172,
+  "ppo_pid": 2829173,
+  "ppo_still_running": false,
+  "preserve_existing_logs": true
+}

@@ -12,5 +12,9 @@ cyclonedds/
 GMR/
 .vscode/
 .env
+.venv/
+.deps/
+.pytest_cache/
+.ruff_cache/
 *.npz
 *.pkl

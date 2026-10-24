@@ -2,6 +2,8 @@
 
 **Genesis Humanoid** is an all-in-one humanoid research platform on top of the [Genesis](https://github.com/Genesis-Embodied-AI/Genesis) simulator. It supports real-time human-to-humanoid retargeting, includes different motion dataset with unified format, provides an end-to-end learning pipeline, and offers a modular low-level control testbed for experimentation.
 
+> **Experimental G1 SHAC branch:** differentiable-physics SHAC and matched PPO are implemented, but the latest formal SHAC run stopped at update 26 with nonfinite physics gradients. No high-quality policy or efficiency improvement has been established. See the [handoff and recovery instructions](docs/SHAC_HANDOFF.md), [implementation notes](SHAC_BASELINE.md), and [archived evidence](artifacts/shac/2026-10-24/README.md).
+
 <p align="center">
   <img src="media/teaser.gif" width="320">
 </p>

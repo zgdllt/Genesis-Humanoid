@@ -1,0 +1,18 @@
+{
+  "failed_run": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0",
+  "failed_swanlab": "https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/19qlpf9e",
+  "completed_updates": 1,
+  "failed_update": 2,
+  "observed_error": "CUDA_ERROR_OUT_OF_MEMORY during solver.__getstate__ -> qd_to_numpy -> matrix_to_ext_arr, before second backward",
+  "debug_eval_envs": 16,
+  "formal_eval_envs": 128,
+  "repair": "Flush unused Torch cache before Quadrants checkpoint staging; retain complete snapshot and active autograd graph",
+  "formal_num_envs": 4096,
+  "formal_iterations": 50000,
+  "quality_protocol_changed": false,
+  "gradient_checks_passed": 9,
+  "cpu_tests_passed": 31,
+  "formal_restart_verified": false,
+  "archive": "/mnt/big_disk/limh24/genesis-shac-20261023/repair_20261024/implementation_snapshot_memfix.tar.gz",
+  "runtime_environment": "/mnt/big_disk/limh24/genesis-shac-20261023/runtime_environment.json"
+}

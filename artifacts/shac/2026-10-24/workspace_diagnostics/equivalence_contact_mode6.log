@@ -1,0 +1,59 @@
+[38;5;159m[Genesis] [20:34:31] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:34:31] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:34:31] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:34:31] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [20:34:31] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m32[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+[38;5;159m[Genesis] [20:34:31] [INFO] Scene [38;5;121m[3m<ea61434>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [20:34:31] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_2364a2d[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [20:34:31] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [20:34:32] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_37c1f4e[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:34:32] [INFO] Building scene [38;5;121m[3m<ea61434>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [20:34:34] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/ast/ast_transformers/function_def_transformer.py:781: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  return index == 0 and isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str))
+[38;5;159m[Genesis] [20:34:39] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [20:34:39] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+[38;5;159m[Genesis] [20:34:41] [INFO] Scene [38;5;121m[3m<258451f>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [20:34:41] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_9a2af4e[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [20:34:41] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [20:34:41] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;159m[Genesis] [20:34:41] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_6d8b218[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [20:34:41] [INFO] Building scene [38;5;121m[3m<258451f>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [20:34:43] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [20:34:48] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [20:34:48] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+{"mismatch": "actor", "error": 0.0014200881123542786, "left": [0.005355849862098694, -0.03500092774629593, -0.00988047569990158, -0.002339822705835104, -0.018840285018086433, -0.03600514680147171, 0.013547781854867935, 0.013111532665789127, -0.016404373571276665, 0.017972595989704132, 0.028621522709727287, -0.010311425663530827], "right": [0.005355849862098694, -0.03500092774629593, -0.00988047569990158, -0.002339822705835104, -0.018840285018086433, -0.03600514680147171, 0.013547781854867935, 0.013111532665789127, -0.016404373571276665, 0.017972595989704132, 0.028621522709727287, -0.010311425663530827]}
+{"mismatch": "critic", "error": 0.011577397584915161, "left": [0.005355849862098694, -0.03500092774629593, -0.00988047569990158, -0.002339822705835104, -0.018840285018086433, -0.03600514680147171, 0.013547781854867935, 0.013111532665789127, -0.016404373571276665, 0.017972595989704132, 0.028621522709727287, -0.010311425663530827], "right": [0.005355849862098694, -0.03500092774629593, -0.00988047569990158, -0.002339822705835104, -0.018840285018086433, -0.03600514680147171, 0.013547781854867935, 0.013111532665789127, -0.016404373571276665, 0.017972595989704132, 0.028621522709727287, -0.010311425663530827]}
+{"mismatch": "qd", "error": 0.013652294874191284, "left": [-0.023756707087159157, 0.12456776201725006, -0.05622440204024315, 0.08271083980798721, -0.45341429114341736, 0.01711302623152733, 0.32372090220451355, -0.47771894931793213, -0.32912763953208923, 0.46619969606399536, -0.050060465931892395, 0.35602548718452454], "right": [-0.02361852489411831, 0.12445786595344543, -0.0560491606593132, 0.08365245163440704, -0.45364582538604736, 0.017253108322620392, 0.32296136021614075, -0.47786393761634827, -0.32711464166641235, 0.46808797121047974, -0.048737239092588425, 0.3696777820587158]}
+{"mismatch": "force", "error": 3.786590576171875, "left": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], "right": [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]}
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_walk_equivalence.py", line 271, in <module>
+    validate(options.output)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/validate_walk_equivalence.py", line 136, in validate
+    assert not failures, f"Forward step {step} differs: {failures}"
+           ^^^^^^^^^^^^
+AssertionError: Forward step 6 differs: ['actor', 'critic', 'qd', 'force']
+
+[38;5;9m[Genesis] [20:34:56] [ERROR] AssertionError: Forward step 6 differs: ['actor', 'critic', 'qd', 'force'][0m
+[38;5;159m[Genesis] [20:34:56] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m

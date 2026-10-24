@@ -1,0 +1,51 @@
+{
+  "at": "2026-10-24T16:34:35.458348+08:00",
+  "root": "/home/limh24/workspace/Genesis-Humanoid-shac",
+  "ruff": {
+    "files": [
+      "examples/assemble_walk_gate.py",
+      "examples/compare_walk_runs.py",
+      "examples/prepare_shac_engine.py",
+      "examples/probe_genesis_walk_gradients.py",
+      "examples/run_serial_walk_comparison.py",
+      "examples/run_walk_benchmark.py",
+      "examples/validate_shac_gradients.py",
+      "examples/validate_walk_equivalence.py",
+      "src/agent/gs_agent/algos/ppo.py",
+      "src/agent/gs_agent/algos/shac.py",
+      "src/agent/gs_agent/algos/shac_returns.py",
+      "src/agent/gs_agent/utils/gpu_guard.py",
+      "src/agent/gs_agent/utils/shac_engine.py",
+      "src/agent/gs_agent/utils/walk_benchmark.py",
+      "src/agent/gs_agent/utils/walk_evidence.py",
+      "src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py",
+      "tests/test_ppo_timeout.py",
+      "tests/test_shac_returns.py",
+      "tests/test_walk_comparison.py",
+      "tests/test_walk_evidence.py",
+      "tests/test_walk_quality.py"
+    ],
+    "returncode": 0,
+    "stdout": "All checks passed!\n",
+    "stderr": ""
+  },
+  "scope": "Packaging and handoff only; no training started. Source equality was checked before adding documentation.",
+  "cpu_pytest": {
+    "command": ".venv/bin/python -m pytest -q tests/test_shac_returns.py tests/test_ppo_timeout.py tests/test_walk_quality.py tests/test_walk_evidence.py tests/test_walk_comparison.py tests/test_genesis_scene_config.py tests/test_leggedrobot_randomization.py",
+    "returncode": 0,
+    "stdout": "...............................                                          [100%]\n31 passed in 5.23s\n"
+  },
+  "source_transfer": {
+    "original_files": 314,
+    "mismatches": 0
+  },
+  "private_backup": {
+    "objects": 314,
+    "bytes": 366457228,
+    "mismatches": 0,
+    "excluded_rebuildable_directories": [
+      "data_disk/cache",
+      "data_disk/private_engine"
+    ]
+  }
+}

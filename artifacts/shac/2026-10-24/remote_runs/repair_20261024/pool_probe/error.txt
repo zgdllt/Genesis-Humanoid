@@ -1,0 +1,40 @@
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 174, in train
+    metrics = algorithm.train_one_iteration()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/shac.py", line 87, in train_one_iteration
+    self.env.backward_window(actor_loss)
+  File "/mnt/big_disk/limh24/genesis-shac-20261023/repair_20261024/shac_probe_cuda_pool.py", line 70, in backward
+    original_backward(self, loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 255, in backward_window
+    snapshot = solver.__getstate__()
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/base_solver.py", line 408, in __getstate__
+    arrays[item.name] = data_to_array(item.array, to_torch=gs.use_zerocopy, copy=True)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 433, in data_to_array
+    return qd_to_torch(data, copy=copy) if to_torch else qd_to_numpy(data, copy=copy)
+                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 842, in qd_to_numpy
+    array = _maybe_transpose_np(value.to_numpy(), value, transpose)
+                                ^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/util.py", line 325, in wrapped
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/matrix.py", line 1494, in to_numpy
+    matrix_to_ext_arr(self, arr, as_vector)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_quadrants_callable.py", line 101, in __call__
+    return self.wrapper.__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel_impl.py", line 180, in wrapped_func
+    return primal(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 1056, in __call__
+    ret = self.launch_kernel(key, kernel_cpp, compiled_kernel_data, *py_args, qd_stream=qd_stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 856, in launch_kernel
+    raise e from None
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 848, in launch_kernel
+    prog.launch_kernel(compiled_kernel_data, launch_ctx)
+RuntimeError: [cuda_driver.h:operator()@94] CUDA Error CUDA_ERROR_OUT_OF_MEMORY: out of memory while calling malloc_async_impl (cuMemAllocAsync)
+Snapshot CUDA memory: free before/after cache flush 111411200/113508352 bytes; Torch reserved 3881828352/3879731200 bytes

@@ -84,6 +84,7 @@ markers = ["gpu: tests that require gpus"]
 
 # ---------------- uv ----------------
 [tool.uv]
+package = false
 required-environments = [
   "sys_platform == 'darwin' and platform_machine == 'arm64'",
   "sys_platform == 'linux' and platform_machine == 'aarch64'",
@@ -134,3 +135,9 @@ explicit = true
 no_sort_tables = true
 sort_inline_arrays = true
 trailing_comma_inline_array = true
+
+[dependency-groups]
+dev = [
+    "pytest>=8.4.1",
+    "ruff>=0.12.10",
+]

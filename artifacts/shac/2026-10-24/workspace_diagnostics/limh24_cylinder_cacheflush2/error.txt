@@ -1,0 +1,47 @@
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 174, in train
+    metrics = algorithm.train_one_iteration()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/shac.py", line 87, in train_one_iteration
+    self.env.backward_window(actor_loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 250, in backward_window
+    self._scene.scene.backward(loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 166, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/scene.py", line 1039, in backward
+    torch.autograd.backward(loss, *args, **kwargs)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/function.py", line 317, in apply
+    return user_fn(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/grad/bridge.py", line 46, in backward
+    inputs_grad = sim.reverse_step(ctx.step, ctx.epoch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 358, in reverse_step
+    inputs_grad_pairs = self._step_grad()
+                        ^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 451, in _step_grad
+    self.sub_step_grad(self.cur_substep_local)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 476, in sub_step_grad
+    self.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 485, in substep_pre_coupling_grad
+    solver.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1723, in substep_pre_coupling_grad
+    self._constraint_force_grad()
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1504, in _constraint_force_grad
+    self.collider.backward_narrowphase()
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/collider/collider.py", line 1052, in backward_narrowphase
+    func_narrow_phase_diff_convex_vs_convex.grad(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 1056, in __call__
+    ret = self.launch_kernel(key, kernel_cpp, compiled_kernel_data, *py_args, qd_stream=qd_stream)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 856, in launch_kernel
+    raise e from None
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/kernel.py", line 848, in launch_kernel
+    prog.launch_kernel(compiled_kernel_data, launch_ctx)
+RuntimeError: [cuda_driver.h:operator()@94] CUDA Error CUDA_ERROR_OUT_OF_MEMORY: out of memory while calling launch_kernel (cuLaunchKernel)

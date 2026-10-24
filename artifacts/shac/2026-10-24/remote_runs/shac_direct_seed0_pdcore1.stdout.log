@@ -1,0 +1,129 @@
+[38;5;159m[Genesis] [12:37:22] [INFO] [38;5;121m╭───────────────────────────────────────────────╮[0m[38;5;159m[0m
+[38;5;159m[Genesis] [12:37:22] [INFO] [38;5;121m│┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈[0m[38;5;159m [38;5;121m[1m[3mGenesis[0m[38;5;159m [38;5;121m┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈┉┈│[0m[38;5;159m[0m
+[38;5;159m[Genesis] [12:37:22] [INFO] [38;5;121m╰───────────────────────────────────────────────╯[0m[38;5;159m[0m
+[38;5;159m[Genesis] [12:37:22] [INFO] Running on [38;5;121m[NVIDIA GeForce RTX 5070 Ti][0m[38;5;159m with backend [38;5;121mgs.cuda[0m[38;5;159m. Device memory: [38;5;121m15.44[0m[38;5;159m GB.[0m
+[38;5;159m[Genesis] [12:37:22] [INFO] 🚀 Genesis initialized. 🔖 version: [38;5;121m1.4.5[0m[38;5;159m, 🎨 theme: [38;5;121mdark[0m[38;5;159m, 🌱 seed: [38;5;121m0[0m[38;5;159m, 🐛 debug: [38;5;121mFalse[0m[38;5;159m, 📏 precision: [38;5;121m32[0m[38;5;159m, 🔥 performance: [38;5;121mTrue[0m[38;5;159m, 💬 verbose: [38;5;121mINFO[0m[38;5;159m[0m
+swanlab: Tracking run with swanlab version 0.10.2
+swanlab: 💾 Run data saved at 
+/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_pdcore1/swanlab/run
+-20261024_123723-2f5714lx
+swanlab: 📁 View project at https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo
+swanlab: 🚀 View run formal-shac-n4096-seed0 at 
+https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/2f5714lx
+{"swanlab_url": "https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/2f5714lx", "run_dir": "/mnt/big_disk/limh24/genesis-shac-20261023/shac_direct_seed0_pdcore1"}
+[38;5;159m[Genesis] [12:37:23] [INFO] Scene [38;5;121m[3m<60459a8>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [12:37:23] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_63ef843[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [12:37:23] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [12:37:23] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;226m[Genesis] [12:37:24] [WARNING] Mesh is not watertight. Falling back to convex hull for estimating inertial properties.[0m
+[38;5;159m[Genesis] [12:37:24] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_04e6fbe[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [12:37:24] [INFO] Building scene [38;5;121m[3m<60459a8>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [12:37:29] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/_test_tools/warnings_helper.py:11: UserWarning: cannot create weak reference to 'tuple' object. Template mapper caching disabled.
+  warnings.warn(message)
+[38;5;159m[Genesis] [12:37:38] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [12:37:38] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+Policy backbone: MLPBackbone(
+  (_network): Sequential(
+    (0): Linear(in_features=96, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=256, out_features=256, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=128, out_features=29, bias=True)
+  )
+)
+Critic backbone: MLPBackbone(
+  (_network): Sequential(
+    (0): Linear(in_features=103, out_features=256, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=256, out_features=256, bias=True)
+    (3): ReLU()
+    (4): Linear(in_features=256, out_features=128, bias=True)
+    (5): ReLU()
+    (6): Linear(in_features=128, out_features=1, bias=True)
+  )
+)
+Device:  cuda
+[38;5;159m[Genesis] [12:37:40] [INFO] Scene [38;5;121m[3m<a825b14>[0m[38;5;159m created.[0m
+[38;5;159m[Genesis] [12:37:40] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mplane_08d11ce[0m[38;5;159m. idx: [38;5;121m0[0m[38;5;159m, morph: [38;5;121m<gs.morphs.Plane>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;226m[Genesis] [12:37:40] [WARNING] 'is_free' is deprecated and will be removed in the future.[0m
+[38;5;226m[Genesis] [12:37:40] [WARNING] 'requires_jac_and_IK' is deprecated and has no effect.[0m
+[38;5;159m[Genesis] [12:37:40] [INFO] Adding [38;5;121m<gs.engine.entities.RigidEntity>[0m[38;5;159m [38;5;121m[3mg1_29dof_rev_1_0_965cb02[0m[38;5;159m. idx: [38;5;121m1[0m[38;5;159m, morph: [38;5;121m<gs.morphs.URDF(file='/home/limh24/workspace/Genesis-Humanoid-shac/assets/robot/unitree_g1/g1_29dof_simple_collision.urdf')>[0m[38;5;159m, material: [38;5;121m<gs.materials.Rigid>[0m[38;5;159m.[0m
+[38;5;159m[Genesis] [12:37:40] [INFO] Building scene [38;5;121m[3m<a825b14>[0m[38;5;159m...[0m
+[38;5;159m[Genesis] [12:37:46] [INFO] Compiling simulation kernels...[0m
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/ast/ast_transformers/function_def_transformer.py:781: DeprecationWarning: ast.Str is deprecated and will be removed in Python 3.14; use ast.Constant instead
+  return index == 0 and isinstance(stmt, ast.Expr) and isinstance(stmt.value, (ast.Constant, ast.Str))
+[38;5;159m[Genesis] [12:37:52] [INFO] Building visualizer...[0m
+[38;5;159m[Genesis] [12:37:52] [INFO] Raytracer and Rasterizer requires binding to the camera with a specific environment index. Defaulting to 'rendered_envs_idx[0]'. Please specify 'env_idx' if necessary.[0m
+{"iteration": 0, "counters": {"train_env_steps": 0, "eval_env_steps": 128000, "forward_physics_substeps": 0, "wall_time_s": 42.17215512902476, "active_train_s": 0.0, "eval_time_s": 8.898830679012462, "iteration": 0}, "quality": {"return": 10.73305892944336, "survival": 0.0, "velocity_rmse": 0.6011500954627991, "yaw_rmse": 0.4734831154346466, "foot_slip": 0.0010867709061130881, "mean_survival_seconds": 1.3574999570846558, "command_0_survival": 0.0, "command_1_survival": 0.0, "command_2_survival": 0.0, "command_3_survival": 0.0, "command_4_survival": 0.0, "command_5_survival": 0.0, "command_6_survival": 0.0, "command_7_survival": 0.0}}
+/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/quadrants/lang/_func_base.py:831: UserWarning: The .grad attribute of a Tensor that is not a leaf Tensor is being accessed. Its .grad attribute won't be populated during autograd.backward(). If you indeed want the .grad field to be populated for a non-leaf Tensor, use .retain_grad() on the non-leaf Tensor. If you access the non-leaf Tensor by mistake, make sure you access the leaf Tensor instead. See github.com/pytorch/pytorch/pull/30531 for more information. (Triggered internally at /pytorch/build/aten/src/ATen/core/TensorBody.h:492.)
+  if v.requires_grad and v.grad is None:
+{"iteration": 1, "train_env_steps": 98304, "active_train_s": 56.04623421502765, "metrics/rollout/mean_reward": 0.4569342841068283, "metrics/rollout/mean_length": 24.0, "metrics/train/policy_loss": -0.22952231764793396, "metrics/train/value_loss": 0.056586453303073846, "metrics/train/entropy_loss": 41.14920425415039, "metrics/train/actor_grad_norm": 0.032456353306770325, "metrics/train/backbone_grad_norm": 0.022794896736741066, "metrics/train/actor_parameter_delta": 0.35616499185562134, "metrics/train/mean_std": 1.0010005235671997, "metrics/train/learning_rate": 0.001, "metrics/train/entropy_coef": 0.005, "metrics/train/actor_updates": 1, "metrics/train/critic_updates": 48, "metrics/speed/pre_snapshot_flush_s": 0.00020089896861463785, "metrics/speed/snapshot_s": 12.297890315996483, "metrics/speed/pre_reverse_flush_s": 1.0210089385509491e-05, "metrics/speed/reverse_s": 28.99600078491494, "metrics/speed/allocator_flush_s": 0.009879554039798677, "metrics/speed/restore_s": 12.599920640001073, "metrics/speed/snapshot_bytes": 1264204836, "metrics/speed/free_before_snapshot_flush_bytes": 9248702464, "metrics/speed/free_after_snapshot_flush_bytes": 9250799616, "metrics/speed/torch_reserved_before_snapshot_flush_bytes": 2839543808, "metrics/speed/torch_reserved_after_snapshot_flush_bytes": 2837446656, "metrics/speed/rollout_step": 98304, "metrics/speed/useful_steps": 87559, "metrics/speed/rollout_backward_time": 55.847560649970546, "metrics/speed/critic_time": 0.19343332399148494, "metrics/reward_terms/LinVelXYReward": 0.08220236003398895, "metrics/reward_terms/AngVelZReward": 0.015486778691411018, "metrics/reward_terms/LinVelZPenalty": -0.06166166067123413, "metrics/reward_terms/AngVelXYPenalty": -0.21587172150611877, "metrics/reward_terms/OrientationPenalty": -0.13429725170135498, "metrics/reward_terms/ActionRatePenalty": -0.11658413708209991, "metrics/reward_terms/DofPosLimitPenalty": -0.016969384625554085, "metrics/reward_terms/DofVelPenalty": -0.16681326925754547, "metrics/reward_terms/ActionLimitPenalty": 0.0, "metrics/reward_terms/HipYawPenalty": -0.038155704736709595, "metrics/reward_terms/HipRollPenalty": -0.02894229255616665, "metrics/reward_terms/UpperBodyActionPenalty": -0.058509163558483124, "metrics/reward_terms/BodyRollPenalty": -0.10633733123540878, "metrics/reward_terms/WaistRollPenalty": -0.11867357790470123, "metrics/reward_terms/FeetAirTimePenalty": -0.17854110896587372, "metrics/reward_terms/G1FeetSlidePenalty": -0.20580293238162994, "metrics/reward_terms/G1FeetHeightPenalty": -0.1699831336736679, "metrics/reward_terms/FootOrientationPenalty": -0.03156930208206177, "metrics/reward_terms/FeetContactForceLimitPenalty": -0.06604237854480743, "metrics/reward_terms/Total": 0.023008180782198906, "metrics/reward_terms/TotalPositive": 0.09768912941217422, "metrics/reward_terms/TotalNegative": -1.714754343032837}
+{"iteration": 10, "train_env_steps": 983040, "active_train_s": 285.91369390510954, "metrics/rollout/mean_reward": 0.5838493923749775, "metrics/rollout/mean_length": 27.6, "metrics/train/policy_loss": -0.2220456898212433, "metrics/train/value_loss": 0.016174654689772677, "metrics/train/entropy_loss": 41.409950256347656, "metrics/train/actor_grad_norm": 0.02515500783920288, "metrics/train/backbone_grad_norm": 0.008494032546877861, "metrics/train/actor_parameter_delta": 0.11836296319961548, "metrics/train/mean_std": 1.0100395679473877, "metrics/train/learning_rate": 0.001, "metrics/train/entropy_coef": 0.0049991, "metrics/train/actor_updates": 1, "metrics/train/critic_updates": 48, "metrics/speed/pre_snapshot_flush_s": 0.0001854700967669487, "metrics/speed/snapshot_s": 0.43318896694108844, "metrics/speed/pre_reverse_flush_s": 9.019975550472736e-06, "metrics/speed/reverse_s": 23.28465651301667, "metrics/speed/allocator_flush_s": 0.008574441075325012, "metrics/speed/restore_s": 0.1635845589917153, "metrics/speed/snapshot_bytes": 1264204836, "metrics/speed/free_before_snapshot_flush_bytes": 1053032448, "metrics/speed/free_after_snapshot_flush_bytes": 1055129600, "metrics/speed/torch_reserved_before_snapshot_flush_bytes": 2837446656, "metrics/speed/torch_reserved_after_snapshot_flush_bytes": 2835349504, "metrics/speed/rollout_step": 98304, "metrics/speed/useful_steps": 71139, "metrics/speed/rollout_backward_time": 25.237452385015786, "metrics/speed/critic_time": 0.03803465003147721, "metrics/reward_terms/LinVelXYReward": 0.07189119607210159, "metrics/reward_terms/AngVelZReward": 0.01601104624569416, "metrics/reward_terms/LinVelZPenalty": -0.09049899876117706, "metrics/reward_terms/AngVelXYPenalty": -0.22194744646549225, "metrics/reward_terms/OrientationPenalty": -0.15527978539466858, "metrics/reward_terms/ActionRatePenalty": -0.1207592785358429, "metrics/reward_terms/DofPosLimitPenalty": -0.013362565077841282, "metrics/reward_terms/DofVelPenalty": -0.16994132101535797, "metrics/reward_terms/ActionLimitPenalty": 0.0, "metrics/reward_terms/HipYawPenalty": -0.040788207203149796, "metrics/reward_terms/HipRollPenalty": -0.04462723433971405, "metrics/reward_terms/UpperBodyActionPenalty": -0.06340818852186203, "metrics/reward_terms/BodyRollPenalty": -0.10811680555343628, "metrics/reward_terms/WaistRollPenalty": -0.11427295953035355, "metrics/reward_terms/FeetAirTimePenalty": -0.17086267471313477, "metrics/reward_terms/G1FeetSlidePenalty": -0.20458011329174042, "metrics/reward_terms/G1FeetHeightPenalty": -0.15980862081050873, "metrics/reward_terms/FootOrientationPenalty": -0.051499832421541214, "metrics/reward_terms/FeetContactForceLimitPenalty": -0.060812078416347504, "metrics/reward_terms/Total": 0.01956496201455593, "metrics/reward_terms/TotalPositive": 0.0879022404551506, "metrics/reward_terms/TotalNegative": -1.790566086769104}
+{"iteration": 20, "train_env_steps": 1966080, "active_train_s": 540.1716347592883, "metrics/rollout/mean_reward": 0.5996148278575856, "metrics/rollout/mean_length": 27.12, "metrics/train/policy_loss": -0.2230004370212555, "metrics/train/value_loss": 0.011216102614222715, "metrics/train/entropy_loss": 41.696983337402344, "metrics/train/actor_grad_norm": 0.024428920820355415, "metrics/train/backbone_grad_norm": 0.005821136757731438, "metrics/train/actor_parameter_delta": 0.08302533626556396, "metrics/train/mean_std": 1.0200773477554321, "metrics/train/learning_rate": 0.001, "metrics/train/entropy_coef": 0.0049981, "metrics/train/actor_updates": 1, "metrics/train/critic_updates": 48, "metrics/speed/pre_snapshot_flush_s": 0.00017471902538090944, "metrics/speed/snapshot_s": 0.492241263971664, "metrics/speed/pre_reverse_flush_s": 9.470037184655666e-06, "metrics/speed/reverse_s": 23.4385237719398, "metrics/speed/allocator_flush_s": 0.008541684015654027, "metrics/speed/restore_s": 0.163543364033103, "metrics/speed/snapshot_bytes": 1264204836, "metrics/speed/free_before_snapshot_flush_bytes": 1067712512, "metrics/speed/free_after_snapshot_flush_bytes": 1069809664, "metrics/speed/torch_reserved_before_snapshot_flush_bytes": 2822766592, "metrics/speed/torch_reserved_after_snapshot_flush_bytes": 2820669440, "metrics/speed/rollout_step": 98304, "metrics/speed/useful_steps": 68906, "metrics/speed/rollout_backward_time": 25.55578370403964, "metrics/speed/critic_time": 0.037940292968414724, "metrics/reward_terms/LinVelXYReward": 0.07405471801757812, "metrics/reward_terms/AngVelZReward": 0.015766356140375137, "metrics/reward_terms/LinVelZPenalty": -0.08253537118434906, "metrics/reward_terms/AngVelXYPenalty": -0.21865218877792358, "metrics/reward_terms/OrientationPenalty": -0.16429296135902405, "metrics/reward_terms/ActionRatePenalty": -0.12348224967718124, "metrics/reward_terms/DofPosLimitPenalty": -0.022275488823652267, "metrics/reward_terms/DofVelPenalty": -0.16984514892101288, "metrics/reward_terms/ActionLimitPenalty": 0.0, "metrics/reward_terms/HipYawPenalty": -0.03949449956417084, "metrics/reward_terms/HipRollPenalty": -0.03575527295470238, "metrics/reward_terms/UpperBodyActionPenalty": -0.06298620998859406, "metrics/reward_terms/BodyRollPenalty": -0.09692202508449554, "metrics/reward_terms/WaistRollPenalty": -0.11003990471363068, "metrics/reward_terms/FeetAirTimePenalty": -0.17529389262199402, "metrics/reward_terms/G1FeetSlidePenalty": -0.1994764804840088, "metrics/reward_terms/G1FeetHeightPenalty": -0.16171501576900482, "metrics/reward_terms/FootOrientationPenalty": -0.04429052397608757, "metrics/reward_terms/FeetContactForceLimitPenalty": -0.060621801763772964, "metrics/reward_terms/Total": 0.020467841997742653, "metrics/reward_terms/TotalPositive": 0.08982107043266296, "metrics/reward_terms/TotalNegative": -1.76767897605896}
+swanlab: 📁 View project at https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo
+swanlab: 🚀 View run formal-shac-n4096-seed0 at 
+https://swanlab.cn/@zgdllt/g1-walk-shac-vs-ppo/runs/2f5714lx
+swanlab: Upload complete: 1568 records
+Traceback (most recent call last):
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 248, in <module>
+    train(options)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/examples/run_walk_benchmark.py", line 185, in train
+    metrics = algorithm.train_one_iteration()
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/agent/gs_agent/algos/shac.py", line 87, in train_one_iteration
+    self.env.backward_window(actor_loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/src/env/gs_env/sim/envs/locomotion/differentiable_walking_env.py", line 269, in backward_window
+    self._scene.scene.backward(loss)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 166, in wrapper
+    return method(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/scene.py", line 1039, in backward
+    torch.autograd.backward(loss, *args, **kwargs)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/__init__.py", line 364, in backward
+    _engine_run_backward(
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/graph.py", line 865, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.venv/lib/python3.12/site-packages/torch/autograd/function.py", line 317, in apply
+    return user_fn(self, *args)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/grad/bridge.py", line 46, in backward
+    inputs_grad = sim.reverse_step(ctx.step, ctx.epoch)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 358, in reverse_step
+    inputs_grad_pairs = self._step_grad()
+                        ^^^^^^^^^^^^^^^^^
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 451, in _step_grad
+    self.sub_step_grad(self.cur_substep_local)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 476, in sub_step_grad
+    self.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/simulator.py", line 485, in substep_pre_coupling_grad
+    solver.substep_pre_coupling_grad(f)
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/engine/solvers/rigid/rigid_solver.py", line 1705, in substep_pre_coupling_grad
+    gs.raise_exception(f"Nan grad in qpos or dofs_vel found at step {self._sim.cur_step_global}")
+  File "/home/limh24/workspace/Genesis-Humanoid-shac/.deps/genesis/genesis/utils/misc.py", line 40, in raise_exception
+    raise gs.GenesisException(msg)
+genesis.GenesisException: Nan grad in qpos or dofs_vel found at step 91
+
+[38;5;9m[Genesis] [12:49:14] [ERROR] GenesisException: Nan grad in qpos or dofs_vel found at step 91[0m
+[38;5;159m[Genesis] [12:49:14] [INFO] 💤 Exiting Genesis and caching compiled kernels...[0m
